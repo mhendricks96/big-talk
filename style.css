@@ -113,7 +113,8 @@ nav {
   color: var(--color-text-light);
   font-size: 19px;
   /* font-weight: 100; */
-  letter-spacing: 0.02em;
+  letter-spacing: 0.05em;
+  word-spacing: 0.05em;
   transition: color 0.2s;
 }
 
@@ -175,7 +176,7 @@ nav {
 /* === Hero === */
 #hero {
   position: relative;
-  min-height: 70vh;
+  min-height: 120vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -192,16 +193,20 @@ nav {
 }
 
 .hero-overlay {
-  text-align: center;
-  padding: 2rem;
+  text-align: left;
+  padding: 2rem 6vw;
+  width: 100%;
+  max-width: none;
+  margin-top: -40vh;
 }
 
 #hero h1 {
   font-family: var(--font-serif);
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
-  font-weight: 400;
+  font-size: 62px;
+  font-weight: 100;
   color: var(--color-text);
-  letter-spacing: -0.02em;
+  letter-spacing: 0.015em;
+  word-spacing: 0.05em;
   line-height: 1.2;
 }
 
@@ -474,7 +479,7 @@ footer p {
   }
 
   #hero {
-    min-height: 50vh;
+    min-height: 100vh;
   }
 
   .card {
