@@ -7,6 +7,7 @@ async function loadComponent(selector, file) {
 
 document.addEventListener("DOMContentLoaded", async () => {
   await loadComponent("#header-placeholder", "header.html");
+  await loadComponent("#footer-placeholder", "footer.html");
 
   // Init mobile nav toggle after header is loaded
   const toggle = document.querySelector(".nav-toggle");
