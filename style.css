@@ -96,8 +96,10 @@ nav {
 }
 
 .logo-icon {
-  height: 131px;
+  height: 90px;
   width: auto;
+  margin-left: 3.5rem;
+  margin-top: 2rem;
 }
 
 .nav-links {
@@ -187,7 +189,7 @@ nav {
       rgba(200, 180, 150, 0.2) 50%,
       rgba(91, 127, 94, 0.1) 100%
     ),
-    url('cow.jpg');
+    url('images/cow.jpg');
   background-size: cover;
   background-position: center;
 }
@@ -414,6 +416,729 @@ footer p {
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
+/* === About Page === */
+.about-hero {
+  padding: 12rem 6vw 2rem;
+  min-height: 62vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(91, 127, 94, 0.15) 0%,
+      rgba(200, 180, 150, 0.2) 50%,
+      rgba(91, 127, 94, 0.1) 100%
+    ),
+    url('images/mountains.jpg');
+  background-size: cover;
+  background-position: center 40%;
+  text-align: center;
+}
+
+.about-hero h1 {
+  font-family: var(--font-serif);
+  font-size: 62px;
+  font-weight: 100;
+  color: #fff;
+  letter-spacing: 0.015em;
+  font-style: italic;
+}
+
+.about-content {
+  padding: 5rem 2rem 1rem;
+  background: var(--color-warm-white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 470px;
+  gap: 3rem;
+  align-items: start;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.about-photo-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  margin-top: 4rem;
+}
+
+.about-photo {
+  overflow: hidden;
+  width: 420px;
+  height: 640px;
+  border-radius: 45% 45% 0 0 / 35% 35% 0 0;
+}
+
+.about-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.8);
+  transform-origin: 63% 25%;
+}
+
+.about-btn {
+  color: #235C33 !important;
+  font-size: 14.918px;
+  border: 1px solid #235C33;
+  padding: 0.9rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.about-btn:hover {
+  background: #235C33;
+  color: #fff !important;
+  border-color: #235C33;
+}
+
+.about-text {
+  padding: 3rem 2rem;
+  font-family: var(--font-serif);
+  margin-top: 2rem;
+}
+
+.about-text h2 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 100;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+}
+
+.education {
+  padding: 0rem 2rem 4rem;
+  font-family: var(--font-serif);
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.education h2 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 100;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+.education p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+}
+
+/* === Services Page === */
+.services-hero {
+  padding: 12rem 6vw 2rem;
+  min-height: 62vh;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  background:
+    linear-gradient(
+      160deg,
+      rgba(91, 127, 94, 0.15) 0%,
+      rgba(200, 180, 150, 0.2) 50%,
+      rgba(91, 127, 94, 0.1) 100%
+    ),
+    url('images/mountains.jpg');
+  background-size: cover;
+  background-position: center 40%;
+  text-align: center;
+}
+
+.services-hero h1 {
+  font-family: var(--font-serif);
+  font-size: 62px;
+  font-weight: 100;
+  color: #fff;
+  letter-spacing: 0.015em;
+  font-style: italic;
+}
+
+.services-content {
+  padding: 5rem 2rem;
+  background: var(--color-warm-white);
+  text-align: center;
+  font-family: var(--font-serif);
+}
+
+.services-content h3 {
+  font-family: var(--font-serif);
+  /* font-size: 1.5rem; */
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: var(--color-text);
+}
+
+.services-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 1.25rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.services-selection {
+  padding: 0 2rem 5rem;
+  background: var(--color-warm-white);
+}
+
+.faq-selection {
+  padding: 5rem 2rem;
+  background: #cfe3bb;
+}
+
+.faq-selection .services-selection-title {
+  padding-left: 0;
+}
+
+.faq-selection .services-selection-title h2 {
+  font-size: 2.5rem;
+  font-style: normal;
+}
+
+.services-selection-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.services-selection-title {
+  margin-top: -1rem;
+  padding-left: 4rem;
+}
+
+.services-selection-title h2 {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 100;
+  font-style: italic;
+  color: var(--color-text);
+}
+
+.services-accordion {
+  display: flex;
+  flex-direction: column;
+}
+
+.accordion-item {
+  border-top: 1px solid #000;
+  font-family: var(--font-serif);
+}
+
+.accordion-item:last-child {
+  border-bottom: 1px solid #000;
+}
+
+.accordion-item summary {
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: var(--color-text);
+  padding: 1.25rem 0;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.accordion-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.accordion-item summary::after {
+  content: '+';
+  font-size: 1.5rem;
+  font-weight: 300;
+  color: var(--color-text);
+  transition: transform 0.3s;
+}
+
+.accordion-item[open] summary::after {
+  content: '−';
+}
+
+.accordion-content {
+  padding: 0 0 1.5rem;
+}
+
+.accordion-content p {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.offerings-list {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.offerings-list > li {
+  margin-bottom: 1rem;
+}
+
+.offerings-list ul {
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  list-style-type: disc;
+}
+
+/* === Services Carousel === */
+.services-carousel-section {
+  padding: 4rem 0 5rem;
+  background: var(--color-warm-white);
+  position: relative;
+}
+
+.carousel-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.carousel-track-container {
+  overflow: hidden;
+  flex: 1;
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  padding: 2rem 6rem;
+  text-align: center;
+  font-family: var(--font-serif);
+}
+
+.carousel-slide h3 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.carousel-slide p {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--color-text);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+.carousel-slide p + p {
+  margin-top: 1.5rem;
+}
+
+.carousel-arrow {
+  background: #235C33;
+  border: none;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  margin: 0 2rem;
+}
+
+.carousel-arrow:hover {
+  background: #1a4526;
+}
+
+.carousel-arrow svg {
+  width: 24px;
+  height: 24px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (max-width: 768px) {
+  .services-selection-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+}
+
+/* === What to Expect Section === */
+.what-to-expect {
+  padding: 1.5rem 2rem;
+  background: var(--color-warm-white);
+}
+
+.what-to-expect h2 {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  font-weight: 100;
+  font-style: italic;
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: 3rem;
+}
+
+.expect-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  max-width: 1300px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.expect-card {
+  background: #cfe3bb;
+  padding: 2.5rem;
+  font-family: var(--font-serif);
+}
+
+.expect-card h3 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  color: var(--color-text);
+  margin-bottom: 1.5rem;
+}
+
+.expect-card h4 {
+  font-size: 1.28rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.expect-card p {
+  font-size: 1.18rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.expect-card .changes-coming {
+  font-style: italic;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.fees-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.fees-list li {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 0.75rem;
+  font-size: 1.18rem;
+  color: var(--color-text);
+}
+
+.fees-list li::before {
+  content: "•";
+  margin-right: 0.5rem;
+  color: var(--color-text);
+}
+
+.fees-list li .dots {
+  flex: 1;
+  margin: 0 0.5rem;
+  min-width: 20px;
+  height: 3px;
+  align-self: flex-end;
+  margin-bottom: 0.3em;
+  display: block;
+  background-image: radial-gradient(circle, var(--color-text) 1px, transparent 1px);
+  background-size: 6px 3px;
+  background-position: center;
+  background-repeat: repeat-x;
+}
+
+.fees-list li.two-line {
+  flex-wrap: wrap;
+}
+
+.fees-list li.two-line .line-1 {
+  flex: 1 0 100%;
+  margin-left: -1rem;
+  padding-left: 1rem;
+}
+
+.sliding-scale {
+  font-size: 1.13rem;
+  line-height: 1.7;
+  margin-top: 1rem;
+}
+
+.expect-cta {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.expect-btn {
+  font-family: var(--font-serif);
+  color: #235C33;
+  font-size: 1rem;
+  border: 1px solid #235C33;
+  padding: 0.9rem 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.expect-btn:hover {
+  background: #235C33;
+  color: #fff;
+  border-color: #235C33;
+}
+
+/* === Upcoming Offerings === */
+.upcoming-offerings {
+  padding: 4rem 2rem;
+  background: var(--color-warm-white);
+}
+
+.offerings-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  align-items: start;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.offerings-grid h2 {
+  font-family: var(--font-serif);
+  font-size: 4rem;
+  font-weight: 100;
+  color: var(--color-text);
+  max-width: 200px;
+  line-height: 1.1;
+}
+
+.offerings-flyers {
+  display: flex;
+  gap: 2rem;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+}
+
+.flyer-card {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  max-width: 500px;
+  min-width: 280px;
+}
+
+.flyer-card img {
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.flyer-info {
+  padding: 1.5rem 0;
+  font-family: var(--font-serif);
+}
+
+.flyer-info h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.flyer-info .flyer-subtitle {
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.flyer-info p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+
+.flyer-info h4 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 0.5rem;
+}
+
+.flyer-info ul {
+  list-style: disc;
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.flyer-info ul li {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: 0.25rem;
+}
+
+.flyer-btn {
+  font-family: var(--font-serif);
+  color: #235C33;
+  font-size: 1rem;
+  border: 1px solid #235C33;
+  padding: 0.9rem 3rem;
+  min-width: 200px;
+  display: block;
+  width: fit-content;
+  margin: 0 auto;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.flyer-btn:hover {
+  background: #235C33;
+  color: #fff;
+  border-color: #235C33;
+}
+
+@media (max-width: 768px) {
+  .offerings-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .offerings-flyers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flyer-card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .flyer-info {
+    text-align: left;
+  }
+}
+
+@media (max-width: 768px) {
+  .expect-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === Past Group Offerings === */
+.past-offerings {
+  padding: 2rem 2rem 4rem;
+  background: var(--color-warm-white);
+}
+
+.past-offerings-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.past-offerings-grid h2 {
+  font-family: var(--font-serif);
+  font-size: 3rem;
+  font-weight: 100;
+  font-style: italic;
+  color: var(--color-text);
+  margin-bottom: 2rem;
+}
+
+.past-flyers {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.past-flyers img {
+  max-width: 320px;
+  width: 100%;
+  height: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .past-flyers {
+    justify-content: center;
+  }
+}
+
+.quote-section {
+  padding: 6rem 2rem;
+  text-align: center;
+  background-image: url('images/forestFloor.jpg');
+  background-size: cover;
+  background-position: center bottom;
+}
+
+.quote-section blockquote {
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: var(--font-serif);
+}
+
+.quote-section blockquote p {
+  font-size: 1.5rem;
+  font-style: italic;
+  line-height: 1.8;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+
+.quote-section cite {
+  font-size: 1.1rem;
+  font-style: normal;
+  color: #fff;
+}
+
 /* === Responsive === */
 @media (max-width: 768px) {
   .nav-toggle {
@@ -482,5 +1207,67 @@ footer p {
   .cta-buttons {
     flex-direction: column;
     align-items: center;
+  }
+
+  .about-hero {
+    padding: 8rem 1.5rem 2rem;
+  }
+
+  .about-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .about-photo-wrapper {
+    margin-left: 0;
+  }
+
+  .about-photo {
+    width: 320px;
+    height: 400px;
+  }
+
+  .about-img {
+    overflow: hidden;
+  }
+
+  .education {
+    padding: 3rem 1.5rem;
+    text-align: center;
+  }
+
+  .education h2 {
+    font-size: 2rem;
+  }
+
+  .services-hero {
+    padding: 8rem 1.5rem 2rem;
+  }
+
+  .services-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .carousel-slide {
+    padding: 1.5rem 1rem;
+  }
+
+  .carousel-slide h3 {
+    font-size: 1.8rem;
+  }
+
+  .carousel-arrow {
+    width: 45px;
+    height: 45px;
+    margin: 0 0.5rem;
+  }
+
+  .carousel-arrow svg {
+    width: 20px;
+    height: 20px;
   }
 }
