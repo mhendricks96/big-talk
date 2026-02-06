@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Big Talk Counseling Alexandra Walker Individual Family Therapy</title>
+  <!-- <link rel="icon" href="images/bigTalkLogo.png" type="image/png"> -->
+  <link rel="stylesheet" href="https://use.typekit.net/your-kit-id.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="header-placeholder"></div>
+
+  <main>
+
+    <!-- Contact Hero -->
+    <section id="contact-hero" class="contact-hero">
+      <h1>Contact</h1>
+    </section>
+
+    <!-- Contact Content -->
+    <section class="contact-content">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>More Curious?</h2>
+          <p class="divider">It's totally normal to shop around for the right therapist for you! Schedule a 20 minute consultation to see if we may be a good fit.</p>
+          <p>If you have been referred by someone, please provide the name or agency in the “additional message” box.</p>
+          <div class="privacy-note">
+            <p>Privacy Policy</p>
+            <p>This form is NOT confidential. Big Talk Counseling LLC is not responsible for protecting information shared through this consultation form. Like email, it is nor protected and could be subject to data breaches. Big TalkCounselingdoes not collect your data other than for your intended purpose of the form. Squarespace (who runs this website) may be collecting data that we don’t know about. 
+
+</p>
+          </div>
+        </div>
+        <div class="contact-form-wrapper">
+          <div class="form-error-summary" id="form-error-summary" style="display: none;">
+            <p>Form submission failed. Review the following information: <span id="error-list"></span></p>
+          </div>
+          <form class="contact-form" id="consultation-form" action="#" method="post" novalidate>
+            <div class="form-group">
+              <label>Name <span class="required">(required)</span></label>
+              <div class="name-inputs">
+                <div class="name-field">
+                  <span class="field-error" id="first-name-error">First Name is required.</span>
+                  <input type="text" id="first-name" name="first-name" placeholder="First" required>
+                </div>
+                <div class="name-field">
+                  <span class="field-error" id="last-name-error">Last Name is required.</span>
+                  <input type="text" id="last-name" name="last-name" placeholder="Last" required>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="pronouns">Pronouns</label>
+              <input type="text" id="pronouns" name="pronouns">
+            </div>
+            <div class="form-group">
+              <label for="email">Email <span class="required">(required)</span></label>
+              <span class="field-error" id="email-error">Email is required.</span>
+              <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone <span class="required">(required)</span></label>
+              <span class="field-error" id="phone-error">Phone is required.</span>
+              <input type="tel" id="phone" name="phone" required>
+            </div>
+            <div class="form-group">
+              <label for="interested">Interested in <span class="required">(required)</span></label>
+              <span class="field-error" id="interested-error">Selection is required.</span>
+              <select id="interested" name="interested" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="individual">Individual Counseling for me</option>
+                <option value="teen-family">Individual or Family Counseling for my Teen</option>
+                <option value="adults-family">Family Counseling (adults)</option>
+                <option value="group">Group Counseling</option>
+                <option value="clinical">Clinical / Private Practice Consultation</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Additional Message</label>
+              <textarea id="message" name="message" rows="5"></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Submit</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="components.js"></script>
+  <script src="script.js"></script>
+  <script src="contact-form.js"></script>
+</body>
+</html>
