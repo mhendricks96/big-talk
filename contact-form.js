@@ -67,5 +67,12 @@ document.getElementById('consultation-form').addEventListener('submit', function
       message: document.getElementById('message').value.trim()
     };
     console.log('Form submission:', formData);
+
+    // Hide form and error summary, show success message
+    document.getElementById('consultation-form').style.display = 'none';
+    document.getElementById('form-error-summary').style.display = 'none';
+    const successMessage = document.getElementById('form-success-message');
+    successMessage.style.display = 'block';
+    successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 });
