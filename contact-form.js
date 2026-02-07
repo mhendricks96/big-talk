@@ -1,4 +1,4 @@
-document.getElementById('consultation-form').addEventListener('submit', function(e) {
+document.getElementById('consultation-form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
   // Reset all errors
@@ -53,20 +53,33 @@ document.getElementById('consultation-form').addEventListener('submit', function
     document.getElementById('error-list').textContent = missingFields.join(', ');
     document.getElementById('form-error-summary').style.display = 'block';
     document.getElementById('form-error-summary').scrollIntoView({ behavior: 'smooth', block: 'center' });
-  } else {
-    // Form is valid, submit it
-    // this.submit();
+    return; // Stop here if there are errors
+  }
 
-    const formData = {
-      firstName: firstName.value.trim(),
-      lastName: lastName.value.trim(),
-      pronouns: document.getElementById('pronouns').value.trim(),
-      email: email.value.trim(),
-      phone: phone.value.trim(),
-      interested: interested.value,
-      message: document.getElementById('message').value.trim()
-    };
-    console.log('Form submission:', formData);
+  // Form is valid, prepare data
+  const formData = {
+    _subject: 'New Consultation Request from Big Talk Counseling',
+    'Name': `${firstName.value.trim()} ${lastName.value.trim()}`,
+    'Pronouns': document.getElementById('pronouns').value.trim(),
+    'Email': email.value.trim(),
+    'Phone': phone.value.trim(),
+    'Interested In': interested.value,
+    'Message': document.getElementById('message').value.trim()
+};
+
+  // Send to Formspree
+  try {
+    const response = await fetch('https://formspree.io/f/xwvnkroj', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData)
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to send');
+    }
 
     // Hide form and error summary, show success message
     document.getElementById('consultation-form').style.display = 'none';
@@ -74,5 +87,10 @@ document.getElementById('consultation-form').addEventListener('submit', function
     const successMessage = document.getElementById('form-success-message');
     successMessage.style.display = 'block';
     successMessage.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  } catch (error) {
+    // Show error to user
+    alert('Sorry, there was an error submitting your form. Please try again or contact us directly.');
+    console.error('Form submission error:', error);
   }
 });
