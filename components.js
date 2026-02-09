@@ -19,10 +19,25 @@ document.addEventListener("DOMContentLoaded", async () => {
       navLinks.classList.toggle("open");
     });
 
+    // Mobile dropdown toggle
+    const dropdown = navLinks.querySelector(".dropdown");
+    const dropdownToggle = navLinks.querySelector(".dropdown-toggle");
+
+    if (dropdown && dropdownToggle) {
+      dropdownToggle.addEventListener("click", (e) => {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          dropdown.classList.toggle("open");
+        }
+      });
+    }
+
     navLinks.querySelectorAll("a").forEach((link) => {
       link.addEventListener("click", () => {
+        if (link.classList.contains("dropdown-toggle")) return;
         toggle.classList.remove("active");
         navLinks.classList.remove("open");
+        if (dropdown) dropdown.classList.remove("open");
       });
     });
   }
