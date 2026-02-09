@@ -1040,6 +1040,58 @@ footer p {
   stroke-linejoin: round;
 }
 
+/* === Event Confirmation Page === */
+.confirmation-section {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8rem 2rem 5rem;
+  background: var(--color-warm-white);
+}
+
+.confirmation-content {
+  text-align: center;
+  max-width: 500px;
+}
+
+.confirmation-checkmark {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 2rem;
+}
+
+.confirmation-content h1 {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  font-weight: 100;
+  color: #235C33;
+  margin-bottom: 1rem;
+}
+
+.confirmation-content p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--color-text);
+  margin-bottom: 2rem;
+}
+
+.confirmation-btn {
+  font-family: var(--font-serif);
+  color: #235C33;
+  font-size: 1rem;
+  border: 1px solid #235C33;
+  padding: 0.9rem 1.5rem;
+  display: inline-block;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.confirmation-btn:hover {
+  background: #235C33;
+  color: #fff;
+}
+
 /* === Events Page === */
 .events-section {
   padding: 5rem 2rem;
