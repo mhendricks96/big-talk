@@ -1,3 +1,32 @@
+// Google Sheets registration logging
+const GOOGLE_SHEET_URL = 'https://script.google.com/macros/s/AKfycbxOQSQO8-X_pEom7gBzwgfWqyZC7MUSIaKkDKHU1NePIm1bcpjHgoIvPnswKiszAXQoyQ/exec';
+
+function showLoadingOverlay() {
+  const overlay = document.createElement('div');
+  overlay.className = 'loading-overlay';
+  overlay.innerHTML = '<div class="loading-spinner"></div><p>Registering...</p>';
+  document.body.appendChild(overlay);
+}
+
+function hideLoadingOverlay() {
+  const overlay = document.querySelector('.loading-overlay');
+  if (overlay) overlay.remove();
+}
+
+async function sendToGoogleSheet(name, email, group, price) {
+  showLoadingOverlay();
+  try {
+    await fetch(GOOGLE_SHEET_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name, email, group, price })
+    });
+  } catch (error) {
+    console.error('Failed to log registration:', error);
+  }
+}
+
 // Event registration - Stripe payment links
 const digitalParentingLinks = {
   '0': 'This will not be a link',
@@ -35,11 +64,19 @@ document.addEventListener('DOMContentLoaded', function() {
     digitalName?.addEventListener('input', updateDigitalBtn);
     digitalEmail?.addEventListener('input', updateDigitalBtn);
 
-    digitalBtn.addEventListener('click', function() {
+    digitalBtn.addEventListener('click', async function() {
       const selected = digitalSelect.value;
-      const link = digitalParentingLinks[selected];
-      if (link) {
-        window.location.href = link;
+      const priceText = digitalSelect.options[digitalSelect.selectedIndex].text;
+      await sendToGoogleSheet(
+        digitalName.value.trim(),
+        digitalEmail.value.trim(),
+        'Digital Parenting',
+        priceText
+      );
+      if (selected === '0') {
+        window.location.href = 'event-confirmation.html';
+      } else {
+        window.location.href = digitalParentingLinks[selected];
       }
     });
   }
@@ -63,11 +100,19 @@ document.addEventListener('DOMContentLoaded', function() {
     disabledJoyName?.addEventListener('input', updateDisabledJoyBtn);
     disabledJoyEmail?.addEventListener('input', updateDisabledJoyBtn);
 
-    disabledJoyBtn.addEventListener('click', function() {
+    disabledJoyBtn.addEventListener('click', async function() {
       const selected = disabledJoySelect.value;
-      const link = disabledJoyLinks[selected];
-      if (link) {
-        window.location.href = link;
+      const priceText = disabledJoySelect.options[disabledJoySelect.selectedIndex].text;
+      await sendToGoogleSheet(
+        disabledJoyName.value.trim(),
+        disabledJoyEmail.value.trim(),
+        'Journaling for Disabled Joy',
+        priceText
+      );
+      if (selected === '0') {
+        window.location.href = 'event-confirmation.html';
+      } else {
+        window.location.href = disabledJoyLinks[selected];
       }
     });
   }
