@@ -472,7 +472,7 @@ footer p {
       rgba(200, 180, 150, 0.2) 50%,
       rgba(91, 127, 94, 0.1) 100%
     ),
-    url('images/mountains.jpg');
+    url('images/seal.jpg');
   background-size: cover;
   background-position: center 40%;
   text-align: center;
@@ -840,7 +840,7 @@ footer p {
       rgba(200, 180, 150, 0.2) 50%,
       rgba(91, 127, 94, 0.1) 100%
     ),
-    url('images/mountains.jpg');
+    url('images/seal.jpg');
   background-size: cover;
   background-position: center 40%;
   text-align: center;
@@ -1455,6 +1455,27 @@ footer p {
   border-color: var(--color-accent);
 }
 
+.register-form-fields {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.register-input {
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-family: var(--font-sans);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: #fff;
+  color: var(--color-text);
+  min-width: 180px;
+}
+
+.register-input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
 .register-btn {
   padding: 0.6rem 1.5rem;
   font-size: 1rem;
@@ -1546,8 +1567,13 @@ footer p {
   }
 
   .register-dropdown,
-  .register-btn {
+  .register-btn,
+  .register-input {
     width: 100%;
+  }
+
+  .register-form-fields {
+    flex-direction: column;
   }
 
   .sliding-scale {
