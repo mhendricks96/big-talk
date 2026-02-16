@@ -27,9 +27,6 @@ html {
 
 body {
   overflow-x: hidden;
-}
-
-body {
   font-family: var(--font-sans);
   line-height: 1.7;
   color: var(--color-text);
@@ -458,8 +455,10 @@ footer p {
   border-top: 1px solid rgba(0, 0, 0, 0.06);
 }
 
-/* === About Page === */
-.about-hero {
+/* === Page Heroes (About, Contact, Services) === */
+.about-hero,
+.contact-hero,
+.services-hero {
   padding: 12rem 6vw 2rem;
   min-height: 62vh;
   display: flex;
@@ -478,7 +477,9 @@ footer p {
   text-align: center;
 }
 
-.about-hero h1 {
+.about-hero h1,
+.contact-hero h1,
+.services-hero h1 {
   font-family: var(--font-serif);
   font-size: 62px;
   font-weight: 100;
@@ -488,33 +489,6 @@ footer p {
 }
 
 /* === Contact Page === */
-.contact-hero {
-  padding: 12rem 6vw 2rem;
-  min-height: 62vh;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  background:
-    linear-gradient(
-      160deg,
-      rgba(91, 127, 94, 0.15) 0%,
-      rgba(200, 180, 150, 0.2) 50%,
-      rgba(91, 127, 94, 0.1) 100%
-    ),
-    url('images/seal.jpg');
-  background-size: cover;
-  background-position: center 40%;
-  text-align: center;
-}
-
-.contact-hero h1 {
-  font-family: var(--font-serif);
-  font-size: 62px;
-  font-weight: 100;
-  color: #fff;
-  letter-spacing: 0.015em;
-  font-style: italic;
-}
 
 .contact-content {
   padding: 5rem 6rem;
@@ -827,34 +801,6 @@ footer p {
 }
 
 /* === Services Page === */
-.services-hero {
-  padding: 12rem 6vw 2rem;
-  min-height: 62vh;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  background:
-    linear-gradient(
-      160deg,
-      rgba(91, 127, 94, 0.15) 0%,
-      rgba(200, 180, 150, 0.2) 50%,
-      rgba(91, 127, 94, 0.1) 100%
-    ),
-    url('images/seal.jpg');
-  background-size: cover;
-  background-position: center 40%;
-  text-align: center;
-}
-
-.services-hero h1 {
-  font-family: var(--font-serif);
-  font-size: 62px;
-  font-weight: 100;
-  color: #fff;
-  letter-spacing: 0.015em;
-  font-style: italic;
-}
-
 .services-content {
   padding: 5rem 2rem;
   background: var(--color-warm-white);
@@ -867,13 +813,13 @@ footer p {
   /* font-size: 1.5rem; */
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .services-content p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: var(--color-text);
+  color: var(--color-accent);
   margin-bottom: 1.25rem;
   max-width: 800px;
   margin-left: auto;
@@ -1130,12 +1076,14 @@ footer p {
 }
 
 /* === Events Page === */
-.events-section {
+.events-section,
+.events-listing {
   padding: 5rem 2rem;
   background: #cfe3bb;
 }
 
-.events-title {
+.events-title,
+.events-listing-title {
   font-family: var(--font-serif);
   font-size: 2.5rem;
   font-weight: 100;
@@ -1202,20 +1150,6 @@ footer p {
 }
 
 /* === Events Listing Page === */
-.events-listing {
-  padding: 5rem 2rem;
-  background: #cfe3bb;
-}
-
-.events-listing-title {
-  font-family: var(--font-serif);
-  font-size: 2.5rem;
-  font-weight: 100;
-  color: var(--color-text);
-  text-align: center;
-  margin-bottom: 3rem;
-}
-
 .events-listing-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1302,21 +1236,6 @@ footer p {
   color: #fff;
 }
 
-@media (max-width: 768px) {
-  .events-listing-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .events-listing-title {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-  }
-
-  .event-preview-image img {
-    height: 200px;
-  }
-}
-
 /* Extended event card with sliding scale */
 .event-card-extended {
   grid-template-columns: 1.2fr 1fr;
@@ -1356,6 +1275,9 @@ footer p {
   background: rgba(255, 255, 255, 0.7);
   border-radius: 8px;
   padding: 1.5rem;
+  font-size: 1.13rem;
+  line-height: 1.7;
+  margin-top: 1rem;
 }
 
 .sliding-scale h3 {
@@ -1566,88 +1488,6 @@ footer p {
   z-index: 10;
 }
 
-@media (max-width: 768px) {
-  .event-card,
-  .event-card-extended {
-    grid-template-columns: 1fr;
-  }
-
-  .event-image {
-    padding: 1.5rem 1.5rem 0;
-  }
-
-  .event-image-section {
-    padding: 1.5rem 1.5rem 0;
-  }
-
-  .event-card-extended .event-image-section,
-  .event-card-extended .event-details,
-  .event-card-extended .sliding-scale {
-    grid-column: 1;
-    grid-row: auto;
-  }
-
-  .event-card-extended .sliding-scale {
-    padding: 1.5rem;
-  }
-
-  .event-details {
-    padding: 1.5rem;
-  }
-
-  .event-register {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .register-dropdown,
-  .register-btn,
-  .register-input {
-    width: 100%;
-  }
-
-  .register-form-fields {
-    flex-direction: column;
-  }
-
-  .sliding-scale {
-    padding: 1rem;
-  }
-
-  .sliding-scale h3 {
-    font-size: 1.1rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .events-title {
-    font-size: 1.8rem;
-    margin-bottom: 2rem;
-  }
-
-  .services-selection-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .faq-selection .services-selection-title h1 {
-    font-size: 1.5rem;
-  }
-
-  .accordion-item summary {
-    font-size: 1.1rem;
-    text-align: left;
-  }
-
-  .accordion-content {
-    text-align: left;
-  }
-
-  .accordion-content p {
-    font-size: 1rem;
-  }
-}
-
 /* === What to Expect Section === */
 .what-to-expect {
   padding: 1.5rem 2rem;
@@ -1749,12 +1589,6 @@ footer p {
   flex: 1 0 100%;
   margin-left: -1rem;
   padding-left: 1rem;
-}
-
-.sliding-scale {
-  font-size: 1.13rem;
-  line-height: 1.7;
-  margin-top: 1rem;
 }
 
 .expect-cta {
@@ -1893,33 +1727,6 @@ footer p {
   border-color: #235C33;
 }
 
-@media (max-width: 768px) {
-  .offerings-grid {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .offerings-flyers {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .flyer-card {
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .flyer-info {
-    text-align: left;
-  }
-}
-
-@media (max-width: 768px) {
-  .expect-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 /* === Past Group Offerings === */
 .past-offerings {
   padding: 2rem 2rem 4rem;
@@ -1953,12 +1760,6 @@ footer p {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-@media (max-width: 768px) {
-  .past-flyers {
-    justify-content: center;
-  }
-}
-
 .quote-section {
   padding: 6rem 2rem;
   text-align: center;
@@ -1989,6 +1790,7 @@ footer p {
 
 /* === Responsive === */
 @media (max-width: 768px) {
+  /* Nav */
   .nav-toggle {
     display: flex;
   }
@@ -2010,7 +1812,6 @@ footer p {
     display: flex;
   }
 
-  /* Mobile dropdown */
   .dropdown:hover .dropdown-menu {
     display: none;
   }
@@ -2057,6 +1858,34 @@ footer p {
     margin-left: -0.5rem;
   }
 
+  /* Hero */
+  #hero {
+    min-height: 70vh;
+  }
+
+  #hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-overlay {
+    margin-top: -30vh;
+  }
+
+  /* Page heroes */
+  .about-hero,
+  .contact-hero,
+  .services-hero {
+    padding: 8rem 1.5rem 2rem;
+    min-height: 40vh;
+  }
+
+  .about-hero h1,
+  .contact-hero h1,
+  .services-hero h1 {
+    font-size: 2.5rem;
+  }
+
+  /* Intro */
   .intro-grid {
     grid-template-columns: 1fr;
     text-align: center;
@@ -2098,32 +1927,12 @@ footer p {
     margin-top: 0;
   }
 
-  #hero {
-    min-height: 70vh;
-  }
-
-  #hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero-overlay {
-    margin-top: -30vh;
-  }
-
   .cta-buttons {
     flex-direction: column;
     align-items: center;
   }
 
-  .about-hero {
-    padding: 8rem 1.5rem 2rem;
-    min-height: 40vh;
-  }
-
-  .about-hero h1 {
-    font-size: 2.5rem;
-  }
-
+  /* About */
   .about-grid {
     grid-template-columns: 1fr;
   }
@@ -2170,24 +1979,160 @@ footer p {
     font-size: 1.5rem;
   }
 
-  .services-hero {
-    padding: 8rem 1.5rem 2rem;
-    min-height: 40vh;
+  /* Services */
+  .services-selection-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
-  .services-hero h1 {
-    font-size: 2.5rem;
+  .faq-selection .services-selection-title h1 {
+    font-size: 1.5rem;
   }
 
-  .contact-hero {
-    padding: 8rem 1.5rem 2rem;
-    min-height: 40vh;
+  .accordion-item summary {
+    font-size: 1.1rem;
+    text-align: left;
   }
 
-  .contact-hero h1 {
-    font-size: 2.5rem;
+  .accordion-content {
+    text-align: left;
   }
 
+  .accordion-content p {
+    font-size: 1rem;
+  }
+
+  /* Carousel */
+  .carousel-container {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .carousel-track-container {
+    order: 1;
+    flex-basis: 100%;
+  }
+
+  .carousel-arrow {
+    order: 2;
+    width: 45px;
+    height: 45px;
+    margin: 1.5rem 1rem 0;
+  }
+
+  .carousel-arrow svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .carousel-slide {
+    padding: 1.5rem 1rem;
+  }
+
+  .carousel-slide h3 {
+    font-size: 1.8rem;
+  }
+
+  .carousel-slide p {
+    max-width: 400px;
+  }
+
+  /* Events */
+  .events-title,
+  .events-listing-title {
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+  }
+
+  .events-listing-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-preview-image img {
+    height: 200px;
+  }
+
+  .event-card,
+  .event-card-extended {
+    grid-template-columns: 1fr;
+  }
+
+  .event-image {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .event-image-section {
+    padding: 1.5rem 1.5rem 0;
+  }
+
+  .event-card-extended .event-image-section,
+  .event-card-extended .event-details,
+  .event-card-extended .sliding-scale {
+    grid-column: 1;
+    grid-row: auto;
+  }
+
+  .event-card-extended .sliding-scale {
+    padding: 1.5rem;
+  }
+
+  .event-details {
+    padding: 1.5rem;
+  }
+
+  .event-register {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .register-dropdown,
+  .register-btn,
+  .register-input {
+    width: 100%;
+  }
+
+  .register-form-fields {
+    flex-direction: column;
+  }
+
+  .sliding-scale {
+    padding: 1rem;
+  }
+
+  .sliding-scale h3 {
+    font-size: 1.1rem;
+  }
+
+  /* What to Expect */
+  .expect-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Offerings */
+  .offerings-grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .offerings-flyers {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .flyer-card {
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .flyer-info {
+    text-align: left;
+  }
+
+  .past-flyers {
+    justify-content: center;
+  }
+
+  /* Contact */
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -2238,41 +2183,7 @@ footer p {
     text-align: center;
   }
 
-  .carousel-container {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .carousel-track-container {
-    order: 1;
-    flex-basis: 100%;
-  }
-
-  .carousel-arrow {
-    order: 2;
-    width: 45px;
-    height: 45px;
-    margin: 1.5rem 1rem 0;
-  }
-
-  .carousel-arrow svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .carousel-slide {
-    padding: 1.5rem 1rem;
-  }
-
-  .carousel-slide h3 {
-    font-size: 1.8rem;
-  }
-
-  .carousel-slide p {
-    max-width: 400px;
-  }
-
-  /* Footer mobile */
+  /* Footer */
   footer {
     padding: 3rem 1.5rem;
     min-height: auto;

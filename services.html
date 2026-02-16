@@ -172,9 +172,9 @@
               <ul>
                 <li>April 21st, 2026, 12:00-1:00pm PCT</li>
                 <li>Zoom Webinar, Registration opens 1 month prior to event</li>
-                <li>$25 Suggested Registration Fee, sliding scale options available</li>
+                <li>$20 Suggested Registration Fee, sliding scale options available</li>
               </ul>
-              <a href="digital-parenting.html" class="flyer-btn">Learn More</a>
+              <a href="digital-parenting.html" class="flyer-btn">Register Now</a>
             </div>
           </div>
           <div class="flyer-card">
@@ -187,9 +187,9 @@
               <ul>
                 <li>Next Meeting: March 2nd</li>
                 <li>5:00-6:00pm PCT</li>
-                <li>$10 Suggested Registration Fee</li>
+                <li>$10 Suggested Registration Fee, sliding scale options available</li>
               </ul>
-              <a href="journaling-disabled-joy.html" class="flyer-btn">Learn More</a>
+              <a href="journaling-disabled-joy.html" class="flyer-btn">Register Now</a>
             </div>
           </div>
         </div>
@@ -213,5 +213,16 @@
 
   <script src="javascript/components.js"></script>
   <script src="javascript/script.js"></script>
+  <script>
+    document.querySelectorAll('.services-accordion .accordion-item').forEach(item => {
+      item.addEventListener('toggle', () => {
+        if (item.open) {
+          document.querySelectorAll('.services-accordion .accordion-item').forEach(other => {
+            if (other !== item) other.removeAttribute('open');
+          });
+        }
+      });
+    });
+  </script>
 </body>
 </html>
