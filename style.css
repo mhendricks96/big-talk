@@ -867,13 +867,13 @@ footer p {
   /* font-size: 1.5rem; */
   font-weight: bold;
   margin-bottom: 1.5rem;
-  color: var(--color-text);
+  color: var(--color-accent);
 }
 
 .services-content p {
   font-size: 1.1rem;
   line-height: 1.8;
-  color: var(--color-text);
+  color: var(--color-accent);
   margin-bottom: 1.25rem;
   max-width: 800px;
   margin-left: auto;
