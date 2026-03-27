@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Big Talk Counseling Alexandra Walker Individual Family Therapy">
+  <Header slot="header" />
+
+  <section id="hero">
+    <div class="hero-overlay">
+      <h1>Glad you made it.</h1>
+    </div>
+  </section>
+
+  <section id="about" class="intro">
+    <div class="intro-grid">
+      <div class="intro-photo">
+        <img
+          src="/images/lexiIndex.jpg"
+          alt="Lexi Walker, a counselor with long curly brown hair, smiling warmly while standing outdoors in an autumn setting, wearing a striped blouse"
+          class="intro-img"
+        />
+      </div>
+      <div class="intro-text">
+        <h2>Nice to meet you</h2>
+        <p class="credentials">
+          My name is Alexandra Walker, but you can call me Lexi. I am a Registered Counselor
+          Associate and Clinical Rehabilitation Counselor (CRC) located in Portland, Oregon. If
+          you've made it here, you have already shown tremendous bravery seeking mental health
+          support. I currently offer individual and family counseling for folks aged 14 and older.
+          Grief, loss, adjustment, and chronic illness can activate old emotions and new experiences.
+          When the time is right, therapeutic support can be one of the gentlest gifts we can give
+          to ourselves.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="quote">
+    <blockquote>
+      <p>If we want to change something, we must first begin to love it.</p>
+      <cite>&mdash; Lama Rod Owens, <em>Love &amp; Rage</em></cite>
+    </blockquote>
+  </section>
+
+  <section id="services" class="cta-section">
+    <h1 class="cta-cards-title">I want to learn more about:</h1>
+    <div class="cta-buttons">
+      <a href="/services" class="cta-btn">Services and Specialties</a>
+      <a href="/about" class="cta-btn">Lexi's Approach to Counseling</a>
+      <a href="/faqs" class="cta-btn">What to Expect (FAQ)</a>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

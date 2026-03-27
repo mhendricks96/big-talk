@@ -1,0 +1,13 @@
+# Redirects from old .html URLs to new clean URLs
+# Cloudflare Pages processes this file automatically
+
+/about.html                    /about                    301
+/services.html                 /services                 301
+/faqs.html                     /faqs                     301
+/contact.html                  /contact                  301
+/events.html                   /events                   301
+/event-confirmation.html       /event-confirmation       301
+/digital-parenting.html        /events/digital-parenting 301
+/journaling-adhd.html          /events/journaling-adhd   301
+/journaling-disabled-joy.html  /events/journaling-disabled-joy 301
+/big-decisions.html            /events/big-decisions     301

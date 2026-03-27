@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+let events: Array<any> = [];
+try {
+  const allEvents = await getCollection('events');
+  events = allEvents.filter((e) => !e.data.draft);
+} catch {
+  // Collection not yet set up — fallback to hardcoded items
+}
+---
+
+<BaseLayout title="Upcoming Events - Big Talk Counseling Alexandra Walker Individual Family Therapy">
+  <Header slot="header" />
+
+  <section id="events-hero" class="about-hero"></section>
+
+  <section class="events-listing">
+    <h1 class="events-listing-title">Upcoming Events</h1>
+    <div class="events-listing-grid">
+      {events.length > 0 ? (
+        events.map((event) => (
+          <a href={`/events/${event.slug}`} class="event-preview">
+            {event.data.image && (
+              <div class="event-preview-image">
+                <img src={event.data.image} alt={event.data.imageAlt || event.data.title} />
+              </div>
+            )}
+            <div class="event-preview-info">
+              <h2>{event.data.title}</h2>
+              {event.data.subtitle && (
+                <p class="event-preview-subtitle">{event.data.subtitle}</p>
+              )}
+              <p class="event-preview-meta">
+                {[event.data.schedule || event.data.date, event.data.time, event.data.location]
+                  .filter(Boolean)
+                  .join(' · ')}
+              </p>
+              {event.data.cost && (
+                <p class="event-preview-cost">{event.data.cost}</p>
+              )}
+              <span class="event-preview-btn">{event.data.ctaLabel}</span>
+            </div>
+          </a>
+        ))
+      ) : (
+        <>
+          <a href="/events/digital-parenting" class="event-preview">
+            <div class="event-preview-image">
+              <img src="/images/internetFlyer.webp" alt="Digital Parenting Webinar Flyer" />
+            </div>
+            <div class="event-preview-info">
+              <h2>Digital Parenting</h2>
+              <p class="event-preview-subtitle">How to talk about the Internet with your Teen</p>
+              <p class="event-preview-meta">Webinar &middot; April 21st, 2025 &middot; 12:00-1:00pm PCT</p>
+              <p class="event-preview-cost">$20 Suggested Fee, sliding scale available</p>
+              <span class="event-preview-btn">Register Now</span>
+            </div>
+          </a>
+
+          <a href="/events/journaling-adhd" class="event-preview">
+            <div class="event-preview-image">
+              <img src="/images/journalingFlyer.webp" alt="Journaling for ADHD Group Flyer" />
+            </div>
+            <div class="event-preview-info">
+              <h2>Journaling for ADHD</h2>
+              <p class="event-preview-subtitle">Counseling Group for Ages 12-14</p>
+              <p class="event-preview-meta">Weekly on Thursdays &middot; 4:30-6pm &middot; Beaverton, OR</p>
+              <p class="event-preview-cost">$60 per session, supplies included</p>
+              <span class="event-preview-btn">Learn More</span>
+            </div>
+          </a>
+
+          <a href="/events/journaling-disabled-joy" class="event-preview">
+            <div class="event-preview-image">
+              <img
+                src="/images/DisabilityJoy1.PNG"
+                alt="Journaling for Disabled Joy Flyer"
+                style="object-position: center 20%;"
+              />
+            </div>
+            <div class="event-preview-info">
+              <h2>Journaling for Disabled Joy</h2>
+              <p class="event-preview-subtitle">
+                This is a virtual event limited to participants identifying as chronically ill or
+                disabled
+              </p>
+              <p class="event-preview-meta">First Monday of the month &middot; 5:00-6:00pm PCT</p>
+              <p class="event-preview-cost">$10 Suggested Registration Fee</p>
+              <span class="event-preview-btn">Register Now</span>
+            </div>
+          </a>
+
+          <a href="/events/big-decisions" class="event-preview">
+            <div class="event-preview-image">
+              <img
+                src="/images/bigDecisionsFlyer.png"
+                alt="Decisions: How to Get Off the Fence Flyer"
+              />
+            </div>
+            <div class="event-preview-info">
+              <h2>Decisions: How to Get Off the Fence</h2>
+              <p class="event-preview-subtitle">10 Week Psychotherapy Group</p>
+              <p class="event-preview-meta">
+                Weekly on Wednesdays &middot; 6:00-7:30pm &middot; Beaverton, OR
+              </p>
+              <p class="event-preview-cost">$65 per session</p>
+              <span class="event-preview-btn">Learn More</span>
+            </div>
+          </a>
+        </>
+      )}
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,133 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="FAQs - Big Talk Counseling Alexandra Walker Individual Family Therapy">
+  <Header slot="header" />
+
+  <section id="faq-hero" class="about-hero"></section>
+
+  <section class="faq-selection">
+    <div class="services-selection-grid">
+      <div class="services-selection-title">
+        <h1>Frequently Asked Questions</h1>
+      </div>
+      <div class="services-accordion">
+        <details class="accordion-item">
+          <summary>How much do you charge? Do you take my insurance?</summary>
+          <div class="accordion-content">
+            <p><strong>Insurance:</strong> Aetna</p>
+            <p>
+              <strong>Out of Network:</strong> I can provide superbills to clients, which you can
+              submit to your insurance plan. Clients are responsible for cost of session, some
+              insurance plans offer reimbursement for mental health.
+            </p>
+            <p>
+              <strong>Individual counseling</strong> begins at <strong>$150</strong> for 50 minutes,
+              with prorated rates for longer sessions. <strong>Family counseling</strong> sessions
+              are <strong>$225</strong> for 60 minutes. At this time, I only bill out of network.
+            </p>
+            <p>At this time I do not take OHP (CareOr, Trillium, Medicare/Medicaid plans).</p>
+          </div>
+        </details>
+        <details class="accordion-item">
+          <summary>Family or Individual Therapy?</summary>
+          <div class="accordion-content">
+            <p>
+              Every family has different needs! After a few initial sessions, I may recommend
+              individual sessions with members of a family, or family sessions to support a
+              struggling teen. I offer a hybrid of in-person and telehealth options for parents,
+              teens, and their siblings.
+            </p>
+          </div>
+        </details>
+        <details class="accordion-item">
+          <summary>Can you provide a "superbill" for insurance reimbursement?</summary>
+          <div class="accordion-content">
+            <p>
+              It's complicated. <strong>Yes</strong> - I can create a super bill of our sessions for
+              you to submit to your insurance for potential reimbursement. Clients will pay upfront
+              and receive a quarterly or monthly superbill. <strong
+                >I cannot guarantee any reimbursement</strong
+              > for a variety of reasons. I am a counseling "associate" and many insurance companies
+              do not have policies / change their policies frequently regarding if they accept
+              services from associates. Additionally insurance companies typically require a
+              diagnosis for treatment which may not be ethically aligned with your personal goals for
+              counseling.
+            </p>
+            <p>
+              If you have any questions, I encourage you to ask during our consultation, as insurance
+              can be confusing and difficult to navigate.
+            </p>
+          </div>
+        </details>
+        <details class="accordion-item">
+          <summary>Do you have a waitlist?</summary>
+          <div class="accordion-content">
+            <p>
+              No, I do not hold a waitlist. If you are interested in my services specifically for my
+              specialties and background, feel free to reach out. My availability may change in small
+              ways month to month.
+            </p>
+          </div>
+        </details>
+        <details class="accordion-item">
+          <summary>What does a therapy session look/feel like?</summary>
+          <div class="accordion-content">
+            <p>
+              Therapy is an individualized process which means sessions can look different from
+              client to client and even day to day. At the beginning of our therapeutic relationship
+              we will establish a treatment plan for your personal goals which will be revisited
+              periodically to check for progress and make changes if things don't feel right.
+              Sometimes sessions will consist of reflection of values and building identity through
+              compassion and reflection. Other times we will work on self regulating skills using
+              mindfulness and somatic techniques for anxiety and behavioral expressions of distress.
+            </p>
+          </div>
+        </details>
+        <details class="accordion-item">
+          <summary>What is the CRC specialty?</summary>
+          <div class="accordion-content">
+            <p>
+              I love being a CRC! As a certified rehabilitation counselor I hold a dual degree in
+              clinical mental health and clinical rehabilitation. My graduate studies was therefore
+              grounded in theory and application of mental health counseling with a focus on helping
+              folks navigate the personal, social, and systemic barriers placed on the disability
+              community. This is all a fancy way of saying - this specialty acknowledges the
+              physical, social, and global experiences of mental health in a holistic way.
+            </p>
+            <p>
+              You don't need to identify as disabled or sick to experience discrimination on the
+              basis of health status. Medical ableism is a form of oppression that intersects with
+              other forms of discrimination (anti-blackness, anti-fatness, cis/het patriarchy, and
+              classism), that impacts professionals and patients alike. The CRC specialty informs my
+              perspective in addressing injustice, and provides a foundation for harm reduction as a
+              professional.
+            </p>
+          </div>
+        </details>
+        <details class="accordion-item">
+          <summary>How does confidentiality work?</summary>
+          <div class="accordion-content">
+            <p>
+              Per ethical and legal obligations clients have a right to confidentiality. This means
+              you have a right privacy about and pertaining to your care. If you are a minor or a
+              parent of a client who is a minor, we will discuss the limits and boundaries to
+              confidentiality during the first session.
+            </p>
+            <p>
+              By Oregon law, I am a mandatory reporter which means I am required to break
+              confidentiality: to report physical or emotional abuse/neglect against a minor or
+              vulnerable adult (disabled or elderly), to intervene if imminent intent to harm
+              oneself or others, or if subpoenaed by a judge.
+            </p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
