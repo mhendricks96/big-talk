@@ -1,0 +1,218 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+let books: Array<any> = [];
+try {
+  const allBooks = await getCollection('books');
+  books = allBooks.filter((b) => !b.data.draft);
+} catch {
+  books = [];
+}
+
+function getLastNameKey(author: string): string {
+  if (author.includes(',')) return author.split(',')[0].trim().toLowerCase();
+  const parts = author.trim().split(' ');
+  return parts[parts.length - 1].toLowerCase();
+}
+
+// Default: recently added
+books.sort((a, b) =>
+  new Date(b.data.entryDate).getTime() - new Date(a.data.entryDate).getTime()
+);
+
+const allTags = [...new Set(books.flatMap((b) => b.data.tags))].sort();
+---
+
+<BaseLayout title="Book Talk - Big Talk Counseling Alexandra Walker Individual Family Therapy">
+  <Header slot="header" />
+
+  <section class="book-talk-hero">
+    <div class="book-talk-hero-inner">
+      <h1>Big Talk's Book Talk</h1>
+      <p class="book-talk-hero-sub">Nonfiction and Ficion reviews and recomendations, from a therapist who loves books</p>
+    </div>
+  </section>
+
+  <div class="book-tag-bar" id="book-tag-bar">
+    <div class="book-bar-top-row">
+      <span class="book-bar-title">Tags/Keywords</span>
+      <input
+        type="search"
+        id="book-search"
+        class="book-search-input"
+        placeholder="Search titles or authors…"
+        autocomplete="off"
+        spellcheck="false"
+      />
+    </div>
+    {allTags.length > 0 && (
+      <div class="book-tag-bar-inner">
+        <button class="book-tag active" data-tag="">All Books</button>
+        {allTags.map((tag) => (
+          <button class="book-tag" data-tag={tag}>{tag}</button>
+        ))}
+      </div>
+    )}
+  </div>
+
+  <section class="books-section">
+    <div class="books-controls">
+      <span class="book-count" id="book-count">{books.length} books</span>
+      <div class="books-sort-wrap">
+        <label for="book-sort" class="books-sort-label">Sort by</label>
+        <select id="book-sort" class="book-sort-select">
+          <option value="recently-added">Recently Added</option>
+          <option value="title">Title A–Z</option>
+          <option value="author">Author Last Name</option>
+          <option value="year-asc">Year (Oldest First)</option>
+          <option value="year-desc">Year (Newest First)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="books-grid" id="books-grid">
+      {books.map((book) => (
+        <article
+          class="book-card"
+          data-title={book.data.title.toLowerCase()}
+          data-author={book.data.author}
+          data-author-last={getLastNameKey(book.data.author)}
+          data-year={book.data.publishYear}
+          data-entry-date={new Date(book.data.entryDate).toISOString()}
+          data-tags={JSON.stringify(book.data.tags)}
+        >
+          <a href={`/books/${book.slug}`} class="book-card-cover-link" tabindex="-1" aria-hidden="true">
+            {book.data.cover
+              ? <img src={book.data.cover} alt={book.data.coverAlt || book.data.title} class="book-card-cover-img" loading="lazy" />
+              : (
+                <div class="book-cover-placeholder">
+                  <span>{book.data.title}</span>
+                </div>
+              )
+            }
+          </a>
+          <div class="book-card-info">
+            <p class="book-card-year">{book.data.publishYear}</p>
+            <a href={`/books/${book.slug}`} class="book-card-title">{book.data.title}</a>
+            <p class="book-card-author">{book.data.author}</p>
+            {book.data.tags.length > 0 && (
+              <div class="book-card-tags">
+                {book.data.tags.map((tag) => (
+                  <button class="book-card-tag" data-tag={tag}>{tag}</button>
+                ))}
+              </div>
+            )}
+            {book.data.summary && (
+              <a href={`/books/${book.slug}`} class="book-card-summary">{book.data.summary}</a>
+            )}
+            <a href={`/books/${book.slug}`} class="book-card-read-more">Read Review →</a>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <p class="books-empty" id="books-empty" hidden>No books found for this tag.</p>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script>
+  let activeTag = '';
+  let searchQuery = '';
+
+  const grid = document.getElementById('books-grid') as HTMLElement;
+  const countEl = document.getElementById('book-count') as HTMLElement;
+  const emptyEl = document.getElementById('books-empty') as HTMLElement;
+  const sortEl = document.getElementById('book-sort') as HTMLSelectElement;
+  const searchEl = document.getElementById('book-search') as HTMLInputElement;
+
+  function getLastName(author: string): string {
+    if (author.includes(',')) return author.split(',')[0].trim().toLowerCase();
+    const parts = author.trim().split(' ');
+    return parts[parts.length - 1].toLowerCase();
+  }
+
+  function applyFilterAndSort() {
+    const allCards = Array.from(grid.querySelectorAll<HTMLElement>('.book-card'));
+    const sortMode = sortEl.value;
+
+    // Filter
+    const q = searchQuery.toLowerCase();
+    const visible = allCards.filter((card) => {
+      if (activeTag) {
+        const tags: string[] = JSON.parse(card.dataset.tags || '[]');
+        if (!tags.includes(activeTag)) return false;
+      }
+      if (q) {
+        const title = card.dataset.title || '';
+        const author = (card.dataset.author || '').toLowerCase();
+        if (!title.includes(q) && !author.includes(q)) return false;
+      }
+      return true;
+    });
+
+    // Hide/show
+    allCards.forEach((card) => {
+      card.hidden = !visible.includes(card);
+    });
+
+    // Sort visible cards and reorder in DOM
+    const sorted = [...visible].sort((a, b) => {
+      switch (sortMode) {
+        case 'title':
+          return (a.dataset.title || '').localeCompare(b.dataset.title || '');
+        case 'author':
+          return getLastName(a.dataset.author || '').localeCompare(getLastName(b.dataset.author || ''));
+        case 'year-asc':
+          return Number(a.dataset.year) - Number(b.dataset.year);
+        case 'year-desc':
+          return Number(b.dataset.year) - Number(a.dataset.year);
+        default: // recently-added
+          return new Date(b.dataset.entryDate || '').getTime() - new Date(a.dataset.entryDate || '').getTime();
+      }
+    });
+    sorted.forEach((card) => grid.appendChild(card));
+
+    // Update count and empty state
+    countEl.textContent = `${visible.length} book${visible.length !== 1 ? 's' : ''}`;
+    emptyEl.hidden = visible.length > 0;
+  }
+
+  // Tag bar clicks (both the bar buttons and the in-card tag buttons)
+  document.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-tag]');
+    if (!btn) return;
+
+    const tag = btn.dataset.tag ?? '';
+
+    // If clicking the same active tag (or "All Books"), clear filter
+    if (tag === activeTag || tag === '') {
+      activeTag = '';
+    } else {
+      activeTag = tag;
+    }
+
+    // Sync tag bar button states
+    document.querySelectorAll<HTMLElement>('.book-tag').forEach((b) => {
+      b.classList.toggle('active', b.dataset.tag === activeTag || (activeTag === '' && b.dataset.tag === ''));
+    });
+
+    applyFilterAndSort();
+
+    // Scroll to grid
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  sortEl.addEventListener('change', applyFilterAndSort);
+
+  searchEl.addEventListener('input', () => {
+    searchQuery = searchEl.value.trim();
+    applyFilterAndSort();
+  });
+
+  applyFilterAndSort();
+</script>

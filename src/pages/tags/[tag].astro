@@ -1,0 +1,69 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const books = await getCollection('books', ({ data }) => !data.draft);
+  const allTags = [...new Set(books.flatMap((b) => b.data.tags))];
+
+  return allTags.map((tag) => ({
+    params: { tag: tag.toLowerCase().replace(/\s+/g, '-') },
+    props: {
+      tagLabel: tag,
+      books: books.filter((b) => b.data.tags.includes(tag)),
+    },
+  }));
+}
+
+const { tagLabel, books } = Astro.props;
+---
+
+<BaseLayout title={`${tagLabel} — Book Talk · Big Talk Counseling`}>
+  <Header slot="header" />
+
+  <section class="book-talk-hero">
+    <div class="book-talk-hero-inner">
+      <a href="/book-talk" class="book-back-link">← All Books</a>
+      <h1>"{tagLabel}"</h1>
+      <p class="book-talk-hero-sub">{books.length} book{books.length !== 1 ? 's' : ''}</p>
+    </div>
+  </section>
+
+  <section class="books-section">
+    <div class="books-grid">
+      {books.map((book) => (
+        <article class="book-card">
+          <a href={`/books/${book.slug}`} class="book-card-cover-link">
+            {book.data.cover
+              ? <img src={book.data.cover} alt={book.data.coverAlt || book.data.title} class="book-card-cover-img" />
+              : (
+                <div class="book-cover-placeholder">
+                  <span>{book.data.title}</span>
+                </div>
+              )
+            }
+          </a>
+          <div class="book-card-info">
+            <a href={`/books/${book.slug}`} class="book-card-title">{book.data.title}</a>
+            <p class="book-card-author">{book.data.author}</p>
+            <p class="book-card-year">{book.data.publishYear}</p>
+            {book.data.tags.length > 0 && (
+              <div class="book-card-tags">
+                {book.data.tags.map((tag) => (
+                  <a href={`/tags/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}`} class="book-card-tag">{tag}</a>
+                ))}
+              </div>
+            )}
+            {book.data.summary && (
+              <a href={`/books/${book.slug}`} class="book-card-summary">{book.data.summary}</a>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
