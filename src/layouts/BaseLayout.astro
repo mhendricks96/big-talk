@@ -1,0 +1,38 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Big Talk Counseling Alexandra Walker Individual Family Therapy',
+  description = 'Big Talk Counseling LLC — Individual and family therapy with Alexandra Walker, Portland, Oregon.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <!-- TODO: replace your-kit-id with your actual Adobe Typekit project ID -->
+    <link rel="stylesheet" href="https://use.typekit.net/your-kit-id.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <slot name="header" />
+    <main>
+      <slot />
+    </main>
+    <slot name="footer" />
+    <slot name="scripts" />
+  </body>
+</html>

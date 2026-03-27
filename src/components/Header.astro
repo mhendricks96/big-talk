@@ -1,0 +1,105 @@
+---
+import { getCollection } from 'astro:content';
+
+// During Phase 1 this will be empty — events collection is set up in Phase 3
+let navEvents: Array<{ slug: string; data: { title: string; showInNav: boolean; draft: boolean } }> = [];
+try {
+  const allEvents = await getCollection('events');
+  navEvents = allEvents.filter((e) => e.data.showInNav && !e.data.draft);
+} catch {
+  // Collection doesn't exist yet — Phase 1 fallback to hardcoded items below
+}
+---
+
+<header id="header">
+  <nav>
+    <a href="/" class="logo">
+      <img
+        src="/images/logo.webp"
+        alt="Big Talk Counseling LLC logo featuring green leaves"
+        class="logo-icon"
+      />
+    </a>
+    <button class="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="/about">About</a></li>
+      <li><a href="/services">Services</a></li>
+      <li class="dropdown">
+        <a href="/events" class="dropdown-toggle">Events</a>
+        <ul class="dropdown-menu">
+          <li><a href="/events">All Events</a></li>
+          {navEvents.length > 0 ? (
+            navEvents.map((event) => (
+              <li><a href={`/events/${event.slug}`}>{event.data.title}</a></li>
+            ))
+          ) : (
+            <>
+              <li><a href="/events/digital-parenting">Digital Parenting</a></li>
+              <li><a href="/events/journaling-adhd">Journaling for ADHD</a></li>
+              <li><a href="/events/journaling-disabled-joy">Journaling for Disabled Joy</a></li>
+              <li><a href="/events/big-decisions">Decisions: How to Get Off the Fence</a></li>
+            </>
+          )}
+        </ul>
+      </li>
+      <li><a href="/faqs">FAQs</a></li>
+      <li><a href="/contact" class="nav-btn">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const toggle = document.querySelector('.nav-toggle') as HTMLButtonElement | null;
+    const navLinks = document.querySelector('.nav-links') as HTMLElement | null;
+
+    if (toggle && navLinks) {
+      toggle.addEventListener('click', () => {
+        toggle.classList.toggle('active');
+        navLinks.classList.toggle('open');
+      });
+
+      const dropdown = navLinks.querySelector('.dropdown') as HTMLElement | null;
+      const dropdownToggle = navLinks.querySelector('.dropdown-toggle') as HTMLElement | null;
+
+      if (dropdown && dropdownToggle) {
+        dropdownToggle.addEventListener('click', (e) => {
+          if (window.innerWidth <= 768) {
+            e.preventDefault();
+            dropdown.classList.toggle('open');
+          }
+        });
+      }
+
+      navLinks.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          if (link.classList.contains('dropdown-toggle')) return;
+          toggle.classList.remove('active');
+          navLinks.classList.remove('open');
+          if (dropdown) dropdown.classList.remove('open');
+        });
+      });
+    }
+
+    // Hide header on scroll down, show on scroll up or at top
+    const header = document.querySelector('#header') as HTMLElement | null;
+    if (header) {
+      let lastScrollY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        if (currentScrollY <= 50) {
+          header.classList.remove('header-hidden');
+        } else if (currentScrollY > lastScrollY) {
+          header.classList.add('header-hidden');
+        } else {
+          header.classList.remove('header-hidden');
+        }
+        lastScrollY = currentScrollY;
+      });
+    }
+  });
+</script>
