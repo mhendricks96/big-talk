@@ -12,6 +12,12 @@ try {
   books = [];
 }
 
+function getBodyPreview(body: string, length = 150): string {
+  const stripped = body.replace(/^---[\s\S]*?---/, '').replace(/[#*_`[\]]/g, '').trim();
+  if (stripped.length <= length) return stripped;
+  return stripped.slice(0, length).replace(/\s+\S*$/, '') + '…';
+}
+
 function getLastNameKey(author: string): string {
   if (author.includes(',')) return author.split(',')[0].trim().toLowerCase();
   const parts = author.trim().split(' ');
@@ -105,8 +111,8 @@ const allTags = [...new Set(books.flatMap((b) => b.data.tags))].sort();
                 ))}
               </div>
             )}
-            {book.data.summary && (
-              <a href={`/books/${book.slug}`} class="book-card-summary">{book.data.summary}</a>
+            {book.body && (
+              <a href={`/books/${book.slug}`} class="book-card-summary">{getBodyPreview(book.body)}</a>
             )}
             <a href={`/books/${book.slug}`} class="book-card-read-more">Read Review →</a>
           </div>

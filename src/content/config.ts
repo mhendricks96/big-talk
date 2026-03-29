@@ -10,7 +10,6 @@ const bookReviews = defineCollection({
     cover: z.string().optional(),
     coverAlt: z.string().optional(),
     tags: z.array(z.string()).default([]),
-    summary: z.string().optional(),
     draft: z.boolean().default(false),
   }),
 });

@@ -42,9 +42,6 @@
           },
           "default": []
         },
-        "summary": {
-          "type": "string"
-        },
         "draft": {
           "type": "boolean",
           "default": false
