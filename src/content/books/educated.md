@@ -3,7 +3,7 @@ title: "Educated: A Memoir"
 author: "Westover, Tara"
 publishYear: 2018
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/educated.JPG"
 coverAlt: "Educated book cover"
 tags: ["Nonfiction", "Religious Trauma", "Parent Trauma", "Memoir", "Sibling Abuse"]
 ---
