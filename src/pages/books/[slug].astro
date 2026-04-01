@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection, render } from 'astro:content';
+import { Image } from 'astro:assets';
+
+export async function getStaticPaths() {
+  const books = await getCollection('books', ({ data }) => !data.draft);
+  return books.map((book) => ({
+    params: { slug: book.slug },
+    props: { book },
+  }));
+}
+
+const { book } = Astro.props;
+const { data } = book;
+const { Content } = await render(book);
+
+const allBooks = await getCollection('books', ({ data }) => !data.draft);
+const otherBooks = allBooks.filter((b) => b.slug !== book.slug);
+
+const scored = otherBooks.map((b) => ({
+  book: b,
+  score: b.data.tags.filter((t) => data.tags.includes(t)).length,
+}));
+
+scored.sort((a, b) => b.score - a.score);
+
+// Take top matches with at least 1 tag in common, pad with shuffled random picks
+const withTags = scored.filter((s) => s.score > 0).slice(0, 4);
+const withoutTags = scored.filter((s) => s.score === 0).sort(() => Math.random() - 0.5);
+const similarBooks = [...withTags, ...withoutTags].slice(0, 4).map((s) => s.book);
+---
+
+<BaseLayout title={`${data.title} — Book Talk · Big Talk Counseling`}>
+  <Header slot="header" />
+
+  <section class="book-detail-hero">
+    <div class="book-detail-hero-inner">
+      <a href="/book-talk" class="book-back-link">← Book Talk</a>
+      <h1>Big Talk's Book Talk</h1>
+    </div>
+  </section>
+
+  <section class="book-detail-section">
+    <div class="book-detail-grid">
+
+      <div class="book-detail-sidebar">
+        <div class="book-detail-cover">
+          {data.cover && (
+            <Image 
+              src={data.cover} 
+              alt={data.coverAlt || "Book cover"} 
+              width={400} 
+            />
+          )}
+        </div>
+        {data.tags.length > 0 && (
+          <div class="book-detail-tags">
+            <strong>Tags</strong>
+            <div class="book-detail-tag-list">
+              {data.tags.map((tag) => (
+                <a href={`/book-talk?tag=${encodeURIComponent(tag)}`} class="book-detail-tag">{tag}</a>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+
+      <div class="book-detail-review">
+        <p class="book-detail-year">{data.publishYear}</p>
+        <h2 class="book-detail-title">{data.title}</h2>
+        <p class="book-detail-byline">{data.author}</p>
+        <div class="book-review-content">
+          <Content />
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  {similarBooks.length > 0 && (
+    <section class="similar-books-section">
+      <h2 class="similar-books-heading">You might also like…</h2>
+      <div class="similar-books-grid">
+        {similarBooks.map((b) => (
+          <a href={`/books/${b.slug}`} class="similar-book-card">
+            {b.data.cover && (
+              <Image
+                src={b.data.cover}
+                alt={b.data.coverAlt || "Book cover"}
+                width={200}
+              />
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
+
+  <section class="book-detail-footer-nav">
+    <a href="/book-talk" class="book-back-link">← Back to Book Talk</a>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>
