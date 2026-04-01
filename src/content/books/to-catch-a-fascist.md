@@ -3,7 +3,7 @@ title: "To Catch a Fascist: The Fight to Expose the Radical Right"
 author: "Mathias, Christopher"
 publishYear: 2026
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/to-catch-a-fascist.JPG"
 coverAlt: "To Catch a Fascist book cover"
 tags: ["Nonfiction", "PNW History", "Social Justice", "White Supremacy", "Politics"]
 ---

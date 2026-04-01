@@ -3,7 +3,7 @@ title: "The Great Shadow: A History of How Sickness Shapes What We Do, Think, Be
 author: "Bauer, Susan Wise"
 publishYear: 2026
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/the-great-shadow.JPG"
 coverAlt: "The Great Shadow book cover"
 tags: ["Nonfiction", "History", "Chronic Illness & Disability", "Ableism", "Health & Medicine"]
 ---

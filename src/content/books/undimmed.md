@@ -3,7 +3,7 @@ title: "Undimmed: The Eight Awarenesses for Freedom from Unwanted Habits"
 author: "Mak, Cecily"
 publishYear: 2026
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/undimmed.JPG"
 coverAlt: "Undimmed book cover"
 tags: ["Nonfiction", "Memoir", "Sobriety", "Self Help", "Emotional Avoidance"]
 ---

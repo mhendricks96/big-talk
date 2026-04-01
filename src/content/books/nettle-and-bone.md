@@ -3,7 +3,7 @@ title: "Nettle & Bone"
 author: "Kingfisher, T."
 publishYear: 2022
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/nettle-and-bone.JPG"
 coverAlt: "Nettle & Bone book cover"
 tags: ["Fiction", "Fantasy", "Horror", "Fairy Tale Retelling", "Adventure", "Witches"]
 ---

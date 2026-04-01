@@ -3,7 +3,7 @@ title: "When Trees Testify: Science, Wisdom, History, and America's Black Botani
 author: "Montgomery, Beronda"
 publishYear: 2026
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/when-trees-testify.JPG"
 coverAlt: "When Trees Testify book cover"
 tags: ["Nonfiction", "Race", "History", "Environment", "Memoir", "Black Author"]
 ---

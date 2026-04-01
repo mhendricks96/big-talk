@@ -1,9 +1,9 @@
 ---
-title: "Holy Shit: A Brief History of Swearing"
+title: "Holy Sh*t: A Brief History of Swearing"
 author: "Mohr, Melissa"
 publishYear: 2016
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/holy-shit.JPG"
 coverAlt: "Holy Shit book cover"
 tags: ["Nonfiction", "Language", "History", "Religion"]
 ---

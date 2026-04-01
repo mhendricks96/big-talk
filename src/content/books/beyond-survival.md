@@ -3,7 +3,7 @@ title: "Beyond Survival: Strategies and Stories from the Transformative Justice 
 author: "Dixon, Ejeris & Piepzna-Samarasinha, Leah Lakshmi (eds.)"
 publishYear: 2020
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/beyond-survival.jpeg"
 coverAlt: "Beyond Survival book cover"
 tags: ["Disability Justice", "Anthology", "NonFiction", "Social Justice", "Politics", "Activism", "Feminism", "Essays", "Race", "Sociology", "Theory", "Chronic Illness & Disability", "For Therapists", "Ableism"]
 ---

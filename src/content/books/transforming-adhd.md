@@ -3,7 +3,7 @@ title: "Transforming ADHD: Simple Effective Skills to Help You Focus and Succeed
 author: "Crosby, Greg and Lippert, Tonya K."
 publishYear: 2017
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/transforming-adhd.jpeg"
 coverAlt: "Transforming ADHD book cover"
 tags: ["Nonfiction", "ADHD", "Strategies for Neurodivergents", "Teens"]
 ---

@@ -3,7 +3,7 @@ title: "Fierce Intimacy: Standing Up to One Another with Love"
 author: "Real, Terry"
 publishYear: 2018
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/fierce-intimacy.JPG"
 coverAlt: "Fierce Intimacy book cover"
 tags: ["Nonfiction", "Relationships", "Self Help", "Couples and Families", "Relational Repair"]
 ---

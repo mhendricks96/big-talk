@@ -3,7 +3,7 @@ title: "Emotionally Focused Family Therapy: Restoring Connection and Promoting R
 author: "Furrow, James; Palmer, Gail; Johnson, Susan M."
 publishYear: 2019
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/emotionally-focused-family-therapy.jpeg"
 coverAlt: "Emotionally Focused Family Therapy book cover"
 tags: ["Theory", "Family Therapy", "For Therapists"]
 ---

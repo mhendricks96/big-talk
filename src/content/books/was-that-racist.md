@@ -3,7 +3,7 @@ title: "Was That Racist: How to Detect, Interrupt, and Unlearn Bias in Everyday 
 author: "Carter, Evelyn R."
 publishYear: 2026
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/was-that-racist.JPG"
 coverAlt: "Was That Racist book cover"
 tags: ["NonFiction", "Race", "Social Justice", "DEI", "Black Author", "Female Author", "Activism", "Sociology", "Feminism"]
 ---

@@ -2267,22 +2267,74 @@ footer p {
   flex-wrap: wrap;
   gap: 0.5rem;
   align-items: center;
+  max-height: 3.8rem;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  transition: max-height 0.3s ease, mask-image 0s 0.3s, -webkit-mask-image 0s 0.3s;
+}
+
+.book-tag-bar-inner.expanded {
+  max-height: 600px;
+  -webkit-mask-image: none;
+  mask-image: none;
+  transition: max-height 0.3s ease;
 }
 
 .book-bar-top-row {
   display: flex;
   align-items: center;
   gap: 1rem;
-  margin-bottom: 0.6rem;
+}
+
+.book-tag-bar-inner {
+  margin-top: 0.6rem;
+}
+
+.book-bar-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  color: inherit;
+  transition: opacity 0.15s ease;
+}
+
+.book-bar-toggle:hover {
+  opacity: 0.75;
+}
+
+.book-bar-toggle-label {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .book-bar-title {
   font-family: var(--font-serif);
   font-size: 1rem;
   font-style: italic;
-  font-weight: 300;
-  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
   white-space: nowrap;
+}
+
+.book-bar-chevron {
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.book-bar-toggle[aria-expanded="true"] .book-bar-chevron {
+  transform: rotate(180deg);
 }
 
 .book-search-input {
@@ -2736,26 +2788,35 @@ footer p {
 
 .similar-books-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  grid-template-columns: repeat(4, minmax(0, 180px));
+  gap: 2.5rem;
 }
 
 .similar-book-card {
-  display: block;
-  aspect-ratio: 2 / 3;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
   background: var(--color-bg);
 }
 
 .similar-book-card img {
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   transition: opacity 0.2s;
 }
 
 .similar-book-card:hover img {
   opacity: 0.85;
+}
+
+.similar-book-title {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.3;
 }
 
 @media (max-width: 640px) {

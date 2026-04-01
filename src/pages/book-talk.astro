@@ -56,13 +56,19 @@ const allTags = [...new Set(books.flatMap((b) => b.data.tags))].sort();
       />
     </div>
     {allTags.length > 0 && (
-      <div class="book-tag-bar-inner">
+      <div class="book-tag-bar-inner" id="book-tag-bar-inner">
         <button class="book-tag active" data-tag="">All Books</button>
         {allTags.map((tag) => (
           <button class="book-tag" data-tag={tag}>{tag}</button>
         ))}
       </div>
     )}
+    <button class="book-bar-toggle" id="book-bar-toggle" aria-expanded="false" aria-controls="book-tag-bar-inner">
+      <span class="book-bar-toggle-label">Show all</span>
+      <svg class="book-bar-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+        <path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
   </div>
 
   <section class="books-section">
@@ -142,6 +148,18 @@ const allTags = [...new Set(books.flatMap((b) => b.data.tags))].sort();
   const emptyEl = document.getElementById('books-empty') as HTMLElement;
   const sortEl = document.getElementById('book-sort') as HTMLSelectElement;
   const searchEl = document.getElementById('book-search') as HTMLInputElement;
+
+  const toggleBtn = document.getElementById('book-bar-toggle') as HTMLButtonElement;
+  const tagBarInner = document.getElementById('book-tag-bar-inner') as HTMLElement;
+
+  const toggleLabel = toggleBtn.querySelector('.book-bar-toggle-label') as HTMLElement;
+
+  toggleBtn.addEventListener('click', () => {
+    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
+    toggleBtn.setAttribute('aria-expanded', String(!expanded));
+    tagBarInner.classList.toggle('expanded', !expanded);
+    toggleLabel.textContent = expanded ? 'Show all' : 'Show less';
+  });
 
   function getLastName(author: string): string {
     if (author.includes(',')) return author.split(',')[0].trim().toLowerCase();
@@ -226,6 +244,15 @@ const allTags = [...new Set(books.flatMap((b) => b.data.tags))].sort();
     searchQuery = searchEl.value.trim();
     applyFilterAndSort();
   });
+
+  // Apply tag filter from URL param (e.g. coming from a book detail page)
+  const urlTag = new URLSearchParams(window.location.search).get('tag');
+  if (urlTag) {
+    activeTag = urlTag;
+    document.querySelectorAll<HTMLElement>('.book-tag').forEach((b) => {
+      b.classList.toggle('active', b.dataset.tag === activeTag || (activeTag === '' && b.dataset.tag === ''));
+    });
+  }
 
   applyFilterAndSort();
 </script>

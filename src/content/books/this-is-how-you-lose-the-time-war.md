@@ -3,7 +3,7 @@ title: "This is How You Lose the Time War"
 author: "El-Mohtar, Amal & Gladstone, Max"
 publishYear: 2019
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/this-is-how-you-lose-the-time-war.jpeg"
 coverAlt: "This is How You Lose the Time War book cover"
 tags: ["Fiction", "Sci-Fi", "Romance", "Queer Stories", "Female Main Characters"]
 ---

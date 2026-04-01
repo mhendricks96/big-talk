@@ -3,7 +3,7 @@ title: "Smitten: Romantic Obsession, the Neuroscience of Limerence, and How to M
 author: "Bellamy, Tom"
 publishYear: 2026
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/smitten.JPG"
 coverAlt: "Smitten book cover"
 tags: ["Nonfiction", "Relationships", "OCD", "Obsession", "Self Help"]
 ---

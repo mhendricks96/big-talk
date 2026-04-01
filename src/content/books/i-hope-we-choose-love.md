@@ -3,7 +3,7 @@ title: "I Hope We Choose Love: A Trans Girl's Notes from the End of the World"
 author: "Thom, Kai Cheng"
 publishYear: 2019
 entryDate: 2026-03-29
-cover: ""
+cover: "./images/i-hope-we-choose-love.JPG"
 coverAlt: "I Hope We Choose Love book cover"
 tags: ["Nonfiction", "Queer Stories", "Social Justice", "Transformative Justice", "Self Help"]
 ---

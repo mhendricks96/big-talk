@@ -28,9 +28,9 @@ const scored = otherBooks.map((b) => ({
 scored.sort((a, b) => b.score - a.score);
 
 // Take top matches with at least 1 tag in common, pad with shuffled random picks
-const withTags = scored.filter((s) => s.score > 0).slice(0, 3);
+const withTags = scored.filter((s) => s.score > 0).slice(0, 4);
 const withoutTags = scored.filter((s) => s.score === 0).sort(() => Math.random() - 0.5);
-const similarBooks = [...withTags, ...withoutTags].slice(0, 3).map((s) => s.book);
+const similarBooks = [...withTags, ...withoutTags].slice(0, 4).map((s) => s.book);
 ---
 
 <BaseLayout title={`${data.title} — Book Talk · Big Talk Counseling`}>
@@ -61,7 +61,7 @@ const similarBooks = [...withTags, ...withoutTags].slice(0, 3).map((s) => s.book
             <strong>Tags</strong>
             <div class="book-detail-tag-list">
               {data.tags.map((tag) => (
-                <a href={`/tags/${encodeURIComponent(tag.toLowerCase().replace(/\s+/g, '-'))}`} class="book-detail-tag">{tag}</a>
+                <a href={`/book-talk?tag=${encodeURIComponent(tag)}`} class="book-detail-tag">{tag}</a>
               ))}
             </div>
           </div>
@@ -80,21 +80,24 @@ const similarBooks = [...withTags, ...withoutTags].slice(0, 3).map((s) => s.book
     </div>
   </section>
 
-  <div class="similar-books-grid">
-    {similarBooks.map((b) => (
-      <a href={`/books/${b.slug}`} class="similar-book-card">
-        {/* USE b.data.cover INSTEAD OF data.cover */}
-        {b.data.cover && (
-          <Image 
-            src={b.data.cover} 
-            alt={b.data.coverAlt || "Book cover"} 
-            width={200}  /* You can use a smaller width for the thumbnails! */
-          />
-        )}
-        <h3>{b.data.title}</h3>
-      </a>
-    ))}
-  </div>
+  {similarBooks.length > 0 && (
+    <section class="similar-books-section">
+      <h2 class="similar-books-heading">You might also like…</h2>
+      <div class="similar-books-grid">
+        {similarBooks.map((b) => (
+          <a href={`/books/${b.slug}`} class="similar-book-card">
+            {b.data.cover && (
+              <Image
+                src={b.data.cover}
+                alt={b.data.coverAlt || "Book cover"}
+                width={200}
+              />
+            )}
+          </a>
+        ))}
+      </div>
+    </section>
+  )}
 
   <section class="book-detail-footer-nav">
     <a href="/book-talk" class="book-back-link">← Back to Book Talk</a>
