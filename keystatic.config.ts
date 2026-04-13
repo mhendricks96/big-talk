@@ -14,6 +14,68 @@ export default config({
   },
 
   collections: {
+    books: collection({
+      label: 'Books',
+      slugField: 'title',
+      path: 'src/content/books/*',
+      format: { contentField: 'content' },
+      schema: {
+        title: fields.slug({
+          name: { label: 'Title' },
+          slug: {
+            description: 'The URL slug, auto-generated from the title. Edit if needed.',
+          },
+        }),
+
+        author: fields.text({
+          label: 'Author',
+          description: 'Format: "Last, First" — e.g. "Westover, Tara". For multiple authors use "; " as separator.',
+        }),
+
+        publishYear: fields.integer({
+          label: 'Publish Year',
+          validation: { min: 1000, max: 2100 },
+        }),
+
+        entryDate: fields.date({
+          label: 'Entry Date',
+          description: 'The date this review was added.',
+          defaultValue: { kind: 'today' },
+        }),
+
+        cover: fields.image({
+          label: 'Cover Image',
+          directory: 'src/content/books/images',
+          publicPath: './images/',
+        }),
+
+        coverAlt: fields.text({
+          label: 'Cover Alt Text',
+          description: 'Describe the cover for screen readers. Usually "{Book Title} book cover".',
+        }),
+
+        tags: fields.array(
+          fields.text({ label: 'Tag' }),
+          {
+            label: 'Tags',
+            description:
+              'Add tags to categorize this book. You can create new tags or reuse existing ones. Current tags in use include: Nonfiction, Fiction, Memoir, Self Help, Social Justice, For Therapists, Race, History, Chronic Illness & Disability, Queer Stories, Relationships, ADHD, Feminism, Activism, Theory, Family Therapy, Fantasy, Sci-Fi, Horror, Politics, Ableism, Religious Trauma, Parent Trauma, Sibling Abuse, Anthology, Essays, Sociology, Language, Religion, Transformative Justice, Obsession, OCD, Sobriety, Emotional Avoidance, DEI, Black Author, Female Author, Environment, PNW History, White Supremacy, Strategies for Neurodivergents, Teens, Relational Repair, Couples and Families, Fairy Tale Retelling, Adventure, Witches, Post-Apocalypse, Dystopian, Speculative Fiction, Romance, Female Main Characters, Health & Medicine.',
+            itemLabel: (props) => props.value || 'Tag',
+          }
+        ),
+
+        draft: fields.checkbox({
+          label: 'Save as draft (will not appear on the site)',
+          defaultValue: false,
+        }),
+
+        content: fields.mdx({
+          label: 'Review',
+          description: 'Your review of the book.',
+        }),
+      },
+    }),
+
     events: collection({
       label: 'Events',
       slugField: 'title',

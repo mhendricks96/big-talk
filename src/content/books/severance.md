@@ -3,7 +3,7 @@ title: "Severance"
 author: "Ma, Ling"
 publishYear: 2018
 entryDate: 2026-03-29
-cover: "./images/severence.jpeg"
+cover: "./images/severance.jpeg"
 coverAlt: "Severance book cover"
 tags: ["Fiction", "Sci-Fi", "Post-Apocalypse", "Dystopian", "Speculative Fiction"]
 ---
