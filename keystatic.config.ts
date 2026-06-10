@@ -54,12 +54,35 @@ export default config({
           description: 'Describe the cover for screen readers. Usually "{Book Title} book cover".',
         }),
 
+        type: fields.select({
+          label: 'Type',
+          description: 'Fiction or Non-Fiction.',
+          options: [
+            { label: 'Fiction', value: 'Fiction' },
+            { label: 'Non-Fiction', value: 'Non-Fiction' },
+          ],
+          defaultValue: 'Non-Fiction',
+        }),
+
+        authorIdentity: fields.multiselect({
+          label: 'Author Identity',
+          description: "The author's identity, used for filtering. Leave blank if not applicable.",
+          options: [
+            { label: 'Non-American', value: 'Non-American' },
+            { label: 'Black Author', value: 'Black Author' },
+            { label: 'Woman Author', value: 'Woman Author' },
+            { label: 'Queer', value: 'Queer' },
+            { label: 'AAPI', value: 'AAPI' },
+            { label: 'Indigenous', value: 'Indigenous' },
+          ],
+        }),
+
         tags: fields.array(
           fields.text({ label: 'Tag' }),
           {
             label: 'Tags',
             description:
-              'Add tags to categorize this book. You can create new tags or reuse existing ones. Current tags in use include: Nonfiction, Fiction, Memoir, Self Help, Social Justice, For Therapists, Race, History, Chronic Illness & Disability, Queer Stories, Relationships, ADHD, Feminism, Activism, Theory, Family Therapy, Fantasy, Sci-Fi, Horror, Politics, Ableism, Religious Trauma, Parent Trauma, Sibling Abuse, Anthology, Essays, Sociology, Language, Religion, Transformative Justice, Obsession, OCD, Sobriety, Emotional Avoidance, DEI, Black Author, Female Author, Environment, PNW History, White Supremacy, Strategies for Neurodivergents, Teens, Relational Repair, Couples and Families, Fairy Tale Retelling, Adventure, Witches, Post-Apocalypse, Dystopian, Speculative Fiction, Romance, Female Main Characters, Health & Medicine.',
+              'Freeform topic/theme tags (everything other than Type and Author Identity). You can create new tags or reuse existing ones. Current tags in use include: Memoir, Self Help, Social Justice, For Therapists, Race, History, Chronic Illness & Disability, Queer Stories, Relationships, ADHD, Feminism, Activism, Theory, Family Therapy, Fantasy, Sci-Fi, Horror, Politics, Ableism, Religious Trauma, Parent Trauma, Sibling Abuse, Anthology, Essays, Sociology, Language, Religion, Transformative Justice, Obsession, OCD, Sobriety, Emotional Avoidance, DEI, Environment, PNW History, White Supremacy, Strategies for Neurodivergents, Teens, Relational Repair, Couples and Families, Fairy Tale Retelling, Adventure, Witches, Post-Apocalypse, Dystopian, Speculative Fiction, Romance, Female Main Characters, Health & Medicine, Disability Justice.',
             itemLabel: (props) => props.value || 'Tag',
           }
         ),

@@ -56,6 +56,24 @@ const similarBooks = [...withTags, ...withoutTags].slice(0, 4).map((s) => s.book
             />
           )}
         </div>
+        {data.type && (
+          <div class="book-detail-tags">
+            <strong>Type</strong>
+            <div class="book-detail-tag-list">
+              <a href={`/book-talk?type=${encodeURIComponent(data.type)}`} class="book-detail-tag book-detail-tag-type">{data.type}</a>
+            </div>
+          </div>
+        )}
+        {data.authorIdentity && data.authorIdentity.length > 0 && (
+          <div class="book-detail-tags">
+            <strong>Author Identity</strong>
+            <div class="book-detail-tag-list">
+              {data.authorIdentity.map((id) => (
+                <a href={`/book-talk?identity=${encodeURIComponent(id)}`} class="book-detail-tag book-detail-tag-identity">{id}</a>
+              ))}
+            </div>
+          </div>
+        )}
         {data.tags.length > 0 && (
           <div class="book-detail-tags">
             <strong>Tags</strong>

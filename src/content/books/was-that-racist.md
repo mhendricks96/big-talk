@@ -5,7 +5,9 @@ publishYear: 2026
 entryDate: 2026-03-29
 cover: "./images/was-that-racist.JPG"
 coverAlt: "Was That Racist book cover"
-tags: ["NonFiction", "Race", "Social Justice", "DEI", "Black Author", "Female Author", "Activism", "Sociology", "Feminism"]
+type: "Non-Fiction"
+authorIdentity: ["Black Author", "Woman Author"]
+tags: ["Race", "Social Justice", "DEI", "Activism", "Sociology", "Feminism"]
 ---
 
 So grateful to the author and publishers for giving us this work! As a white therapist, I encounter many well intentioned folks who will benefit from this book! It's not quite entry level, perfect for the generation of liberals who were 'woken up by George Floyd' and want to continue their bias work. Framing racial justice as a form of self care is what I've been WAITING for. I ate this book up. The biggest take for me: the pressure to intervene *correctly* stops us from doing something at all.

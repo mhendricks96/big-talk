@@ -5,7 +5,9 @@ publishYear: 2026
 entryDate: 2026-03-29
 cover: "./images/the-great-shadow.JPG"
 coverAlt: "The Great Shadow book cover"
-tags: ["Nonfiction", "History", "Chronic Illness & Disability", "Ableism", "Health & Medicine"]
+type: "Non-Fiction"
+authorIdentity: []
+tags: ["History", "Chronic Illness & Disability", "Ableism", "Health & Medicine"]
 ---
 
 This book is history and philosophy of modern western illness. There were things in this book that will affirm many Americans experiences, especially around mental illness, responsibility and germ precautions, and health morality.

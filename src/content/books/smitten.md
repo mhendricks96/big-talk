@@ -5,7 +5,9 @@ publishYear: 2026
 entryDate: 2026-03-29
 cover: "./images/smitten.JPG"
 coverAlt: "Smitten book cover"
-tags: ["Nonfiction", "Relationships", "OCD", "Obsession", "Self Help"]
+type: "Non-Fiction"
+authorIdentity: []
+tags: ["Relationships", "OCD", "Obsession", "Self Help"]
 ---
 
 a curious read about a topic I'm still not sure how to classify. It's an aerial perspective on a psychosocial phenomenon, so while I learned a lot, I noticed sensationalizing that feel old school and othering. The Author proposes addiction and specifically, the framework of recovery / the language of abstinence as a metaphorical / literal comparison for limerence. Being published in 2026, we know about the stigmatizing impact of this approach, which made me wonder if this book may have a more stigmatizing effect than intended.

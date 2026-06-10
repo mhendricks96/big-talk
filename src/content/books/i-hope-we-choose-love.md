@@ -5,7 +5,9 @@ publishYear: 2019
 entryDate: 2026-03-29
 cover: "./images/i-hope-we-choose-love.JPG"
 coverAlt: "I Hope We Choose Love book cover"
-tags: ["Nonfiction", "Queer Stories", "Social Justice", "Transformative Justice", "Self Help"]
+type: "Non-Fiction"
+authorIdentity: []
+tags: ["Queer Stories", "Social Justice", "Transformative Justice", "Self Help"]
 ---
 
 It's important to read this one in emotional bursts. Sometimes a chapter, or sometimes only a few pages at a time. There was so much that I could relate to (and a lot that wasn't for me, but was beautiful to witness). I was also challenged, and I felt enlightened in a way that somehow felt downward. Like noticing roots, and wisdom.
