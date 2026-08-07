@@ -2,10 +2,10 @@
 import { getCollection } from 'astro:content';
 
 // During Phase 1 this will be empty — events collection is set up in Phase 3
-let navEvents: Array<{ slug: string; data: { title: string; showInNav: boolean; draft: boolean } }> = [];
+let navEvents: Array<{ slug: string; data: { title: string; showInNav: boolean; draft: boolean; past: boolean } }> = [];
 try {
   const allEvents = await getCollection('events');
-  navEvents = allEvents.filter((e) => e.data.showInNav && !e.data.draft);
+  navEvents = allEvents.filter((e) => e.data.showInNav && !e.data.draft && !e.data.past);
 } catch {
   // Collection doesn't exist yet — Phase 1 fallback to hardcoded items below
 }

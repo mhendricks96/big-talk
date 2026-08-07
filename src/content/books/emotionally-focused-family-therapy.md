@@ -5,6 +5,8 @@ publishYear: 2019
 entryDate: 2026-03-29
 cover: "./images/emotionally-focused-family-therapy.jpeg"
 coverAlt: "Emotionally Focused Family Therapy book cover"
+type: "Non-Fiction"
+authorIdentity: []
 tags: ["Theory", "Family Therapy", "For Therapists"]
 ---
 

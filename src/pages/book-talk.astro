@@ -30,6 +30,12 @@ books.sort((a, b) =>
   new Date(b.data.entryDate).getTime() - new Date(a.data.entryDate).getTime()
 );
 
+// Facet vocabularies — only show values actually in use.
+const IDENTITY_ORDER = ['Non-American', 'Black Author', 'Woman Author', 'Queer', 'AAPI', 'Indigenous'];
+const presentTypes = ['Fiction', 'Non-Fiction'].filter((t) => books.some((b) => b.data.type === t));
+const presentIdentities = IDENTITY_ORDER.filter((id) =>
+  books.some((b) => (b.data.authorIdentity || []).includes(id))
+);
 const allTags = [...new Set(books.flatMap((b) => b.data.tags))].sort();
 ---
 
@@ -43,123 +49,189 @@ const allTags = [...new Set(books.flatMap((b) => b.data.tags))].sort();
     </div>
   </section>
 
-  <div class="book-tag-bar" id="book-tag-bar">
-    <div class="book-bar-top-row">
-      <span class="book-bar-title">Tags/Keywords</span>
-      <input
-        type="search"
-        id="book-search"
-        class="book-search-input"
-        placeholder="Search titles or authors…"
-        autocomplete="off"
-        spellcheck="false"
-      />
-    </div>
-    {allTags.length > 0 && (
-      <div class="book-tag-bar-inner" id="book-tag-bar-inner">
-        <button class="book-tag active" data-tag="">All Books</button>
-        {allTags.map((tag) => (
-          <button class="book-tag" data-tag={tag}>{tag}</button>
-        ))}
-      </div>
-    )}
-    <button class="book-bar-toggle" id="book-bar-toggle" aria-expanded="false" aria-controls="book-tag-bar-inner">
-      <span class="book-bar-toggle-label">Show all</span>
-      <svg class="book-bar-chevron" width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
-        <path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      </svg>
-    </button>
-  </div>
-
   <section class="books-section">
-    <div class="books-controls">
-      <span class="book-count" id="book-count">{books.length} books</span>
-      <div class="books-sort-wrap">
-        <label for="book-sort" class="books-sort-label">Sort by</label>
-        <select id="book-sort" class="book-sort-select">
-          <option value="recently-added">Recently Added</option>
-          <option value="title">Title A–Z</option>
-          <option value="author">Author Last Name</option>
-          <option value="year-asc">Year (Oldest First)</option>
-          <option value="year-desc">Year (Newest First)</option>
-        </select>
+    <div class="books-layout">
+      <!-- ===== Filter sidebar ===== -->
+      <aside class="book-filters" id="book-filters">
+        <div class="book-filters-head">
+          <h2 class="book-filters-title">Filters</h2>
+          <button class="filters-clear" id="filters-clear" type="button" hidden>Clear all</button>
+        </div>
+
+        <input
+          type="search"
+          id="book-search"
+          class="filter-search"
+          placeholder="Search titles or authors…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+
+        {presentTypes.length > 0 && (
+          <details class="facet" open>
+            <summary class="facet-summary">
+              Type
+              <svg class="facet-chevron" width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="facet-options">
+              <label class="facet-option">
+                <input type="radio" name="f-type" value="" checked />
+                <span>All</span>
+              </label>
+              {presentTypes.map((t) => (
+                <label class="facet-option">
+                  <input type="radio" name="f-type" value={t} />
+                  <span>{t}</span>
+                </label>
+              ))}
+            </div>
+          </details>
+        )}
+
+        {presentIdentities.length > 0 && (
+          <details class="facet" open>
+            <summary class="facet-summary">
+              Author Identity
+              <svg class="facet-chevron" width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="facet-options">
+              {presentIdentities.map((id) => (
+                <label class="facet-option">
+                  <input type="checkbox" class="f-identity" value={id} />
+                  <span>{id}</span>
+                </label>
+              ))}
+            </div>
+          </details>
+        )}
+
+        {allTags.length > 0 && (
+          <details class="facet" open>
+            <summary class="facet-summary">
+              Tags
+              <svg class="facet-chevron" width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2 5l5 5 5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </summary>
+            <div class="facet-options facet-options-scroll">
+              {allTags.map((tag) => (
+                <label class="facet-option">
+                  <input type="checkbox" class="f-tag" value={tag} />
+                  <span>{tag}</span>
+                </label>
+              ))}
+            </div>
+          </details>
+        )}
+      </aside>
+
+      <!-- ===== Results ===== -->
+      <div class="books-main">
+        <div class="books-controls">
+          <button class="filters-toggle" id="filters-toggle" type="button" aria-expanded="false" aria-controls="book-filters">
+            Filters
+          </button>
+          <span class="book-count" id="book-count">{books.length} books</span>
+          <div class="books-sort-wrap">
+            <label for="book-sort" class="books-sort-label">Sort by</label>
+            <select id="book-sort" class="book-sort-select">
+              <option value="recently-added">Recently Added</option>
+              <option value="title">Title A–Z</option>
+              <option value="author">Author Last Name</option>
+              <option value="year-asc">Year (Oldest First)</option>
+              <option value="year-desc">Year (Newest First)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="active-filters" id="active-filters" hidden></div>
+
+        <div class="books-grid" id="books-grid">
+          {books.map((book) => (
+            <article
+              class="book-card"
+              data-title={book.data.title.toLowerCase()}
+              data-author={book.data.author}
+              data-author-last={getLastNameKey(book.data.author)}
+              data-year={book.data.publishYear}
+              data-entry-date={new Date(book.data.entryDate).toISOString()}
+              data-type={book.data.type}
+              data-identity={JSON.stringify(book.data.authorIdentity || [])}
+              data-tags={JSON.stringify(book.data.tags)}
+            >
+              <a href={`/books/${book.slug}`} class="book-card-cover-link" tabindex="-1" aria-hidden="true">
+                {book.data.cover
+                  ? (
+                    <Image
+                      src={book.data.cover}
+                      alt={book.data.coverAlt || book.data.title}
+                      width={300}
+                      class="book-card-cover-img"
+                    />
+                  ) : (
+                    <div class="book-cover-placeholder">
+                      <span>{book.data.title}</span>
+                    </div>
+                  )
+                }
+              </a>
+              <div class="book-card-info">
+                <p class="book-card-year">{book.data.publishYear}</p>
+                <a href={`/books/${book.slug}`} class="book-card-title">{book.data.title}</a>
+                <p class="book-card-author">{book.data.author}</p>
+                <div class="book-card-badges">
+                  <button class="book-card-badge book-card-badge-type" data-filter="type" data-value={book.data.type}>{book.data.type}</button>
+                  {(book.data.authorIdentity || []).map((id) => (
+                    <button class="book-card-badge book-card-badge-identity" data-filter="identity" data-value={id}>{id}</button>
+                  ))}
+                  {book.data.tags.slice(0, 2).map((tag) => (
+                    <button class="book-card-badge book-card-badge-tag" data-filter="tag" data-value={tag}>{tag}</button>
+                  ))}
+                </div>
+                {book.body && (
+                  <a href={`/books/${book.slug}`} class="book-card-summary">{getBodyPreview(book.body)}</a>
+                )}
+                <a href={`/books/${book.slug}`} class="book-card-read-more">Read Review →</a>
+              </div>
+            </article>
+          ))}
+        </div>
+
+        <p class="books-empty" id="books-empty" hidden>No books match these filters.</p>
       </div>
     </div>
-
-    <div class="books-grid" id="books-grid">
-      {books.map((book) => (
-        <article
-          class="book-card"
-          data-title={book.data.title.toLowerCase()}
-          data-author={book.data.author}
-          data-author-last={getLastNameKey(book.data.author)}
-          data-year={book.data.publishYear}
-          data-entry-date={new Date(book.data.entryDate).toISOString()}
-          data-tags={JSON.stringify(book.data.tags)}
-        >
-          <a href={`/books/${book.slug}`} class="book-card-cover-link" tabindex="-1" aria-hidden="true">
-            {book.data.cover 
-              ? (
-                <Image 
-                  src={book.data.cover} 
-                  alt={book.data.coverAlt || book.data.title} 
-                  width={300} 
-                  class="book-card-cover-img" 
-                />
-              ) : (
-                <div class="book-cover-placeholder">
-                  <span>{book.data.title}</span>
-                </div>
-              )
-            }
-          </a>
-          <div class="book-card-info">
-            <p class="book-card-year">{book.data.publishYear}</p>
-            <a href={`/books/${book.slug}`} class="book-card-title">{book.data.title}</a>
-            <p class="book-card-author">{book.data.author}</p>
-            {book.data.tags.length > 0 && (
-              <div class="book-card-tags">
-                {book.data.tags.map((tag) => (
-                  <button class="book-card-tag" data-tag={tag}>{tag}</button>
-                ))}
-              </div>
-            )}
-            {book.body && (
-              <a href={`/books/${book.slug}`} class="book-card-summary">{getBodyPreview(book.body)}</a>
-            )}
-            <a href={`/books/${book.slug}`} class="book-card-read-more">Read Review →</a>
-          </div>
-        </article>
-      ))}
-    </div>
-
-    <p class="books-empty" id="books-empty" hidden>No books found for this tag.</p>
   </section>
 
   <Footer slot="footer" />
 </BaseLayout>
 
 <script>
-  let activeTag = '';
-  let searchQuery = '';
-
   const grid = document.getElementById('books-grid') as HTMLElement;
   const countEl = document.getElementById('book-count') as HTMLElement;
   const emptyEl = document.getElementById('books-empty') as HTMLElement;
   const sortEl = document.getElementById('book-sort') as HTMLSelectElement;
   const searchEl = document.getElementById('book-search') as HTMLInputElement;
+  const sidebar = document.getElementById('book-filters') as HTMLElement;
+  const filtersToggle = document.getElementById('filters-toggle') as HTMLButtonElement;
+  const clearBtn = document.getElementById('filters-clear') as HTMLButtonElement;
+  const activeFiltersEl = document.getElementById('active-filters') as HTMLElement;
 
-  const toggleBtn = document.getElementById('book-bar-toggle') as HTMLButtonElement;
-  const tagBarInner = document.getElementById('book-tag-bar-inner') as HTMLElement;
+  const typeRadios = () => Array.from(document.querySelectorAll<HTMLInputElement>('input[name="f-type"]'));
+  const identityBoxes = () => Array.from(document.querySelectorAll<HTMLInputElement>('input.f-identity'));
+  const tagBoxes = () => Array.from(document.querySelectorAll<HTMLInputElement>('input.f-tag'));
 
-  const toggleLabel = toggleBtn.querySelector('.book-bar-toggle-label') as HTMLElement;
-
-  toggleBtn.addEventListener('click', () => {
-    const expanded = toggleBtn.getAttribute('aria-expanded') === 'true';
-    toggleBtn.setAttribute('aria-expanded', String(!expanded));
-    tagBarInner.classList.toggle('expanded', !expanded);
-    toggleLabel.textContent = expanded ? 'Show all' : 'Show less';
-  });
+  function getState() {
+    return {
+      type: (typeRadios().find((r) => r.checked)?.value) || '',
+      identities: identityBoxes().filter((b) => b.checked).map((b) => b.value),
+      tags: tagBoxes().filter((b) => b.checked).map((b) => b.value),
+      query: searchEl.value.trim().toLowerCase(),
+    };
+  }
 
   function getLastName(author: string): string {
     if (author.includes(',')) return author.split(',')[0].trim().toLowerCase();
@@ -167,31 +239,58 @@ const allTags = [...new Set(books.flatMap((b) => b.data.tags))].sort();
     return parts[parts.length - 1].toLowerCase();
   }
 
+  function renderActiveFilters(state: ReturnType<typeof getState>) {
+    const chips: Array<{ label: string; group: string; value: string }> = [];
+    if (state.type) chips.push({ label: state.type, group: 'type', value: state.type });
+    state.identities.forEach((v) => chips.push({ label: v, group: 'identity', value: v }));
+    state.tags.forEach((v) => chips.push({ label: v, group: 'tag', value: v }));
+
+    activeFiltersEl.innerHTML = '';
+    chips.forEach((c) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      chip.className = 'filter-chip';
+      chip.dataset.group = c.group;
+      chip.dataset.value = c.value;
+      chip.innerHTML = `<span>${c.label}</span><span class="filter-chip-x" aria-hidden="true">×</span>`;
+      chip.setAttribute('aria-label', `Remove filter ${c.label}`);
+      activeFiltersEl.appendChild(chip);
+    });
+
+    const hasFilters = chips.length > 0;
+    activeFiltersEl.hidden = !hasFilters;
+    clearBtn.hidden = !hasFilters && !state.query;
+  }
+
   function applyFilterAndSort() {
+    const state = getState();
     const allCards = Array.from(grid.querySelectorAll<HTMLElement>('.book-card'));
     const sortMode = sortEl.value;
 
-    // Filter
-    const q = searchQuery.toLowerCase();
     const visible = allCards.filter((card) => {
-      if (activeTag) {
-        const tags: string[] = JSON.parse(card.dataset.tags || '[]');
-        if (!tags.includes(activeTag)) return false;
+      // Type — single select (AND across groups)
+      if (state.type && card.dataset.type !== state.type) return false;
+      // Identity — OR within group
+      if (state.identities.length) {
+        const ids: string[] = JSON.parse(card.dataset.identity || '[]');
+        if (!state.identities.some((i) => ids.includes(i))) return false;
       }
-      if (q) {
+      // Tags — OR within group
+      if (state.tags.length) {
+        const tags: string[] = JSON.parse(card.dataset.tags || '[]');
+        if (!state.tags.some((t) => tags.includes(t))) return false;
+      }
+      // Search
+      if (state.query) {
         const title = card.dataset.title || '';
         const author = (card.dataset.author || '').toLowerCase();
-        if (!title.includes(q) && !author.includes(q)) return false;
+        if (!title.includes(state.query) && !author.includes(state.query)) return false;
       }
       return true;
     });
 
-    // Hide/show
-    allCards.forEach((card) => {
-      card.hidden = !visible.includes(card);
-    });
+    allCards.forEach((card) => { card.hidden = !visible.includes(card); });
 
-    // Sort visible cards and reorder in DOM
     const sorted = [...visible].sort((a, b) => {
       switch (sortMode) {
         case 'title':
@@ -202,57 +301,81 @@ const allTags = [...new Set(books.flatMap((b) => b.data.tags))].sort();
           return Number(a.dataset.year) - Number(b.dataset.year);
         case 'year-desc':
           return Number(b.dataset.year) - Number(a.dataset.year);
-        default: // recently-added
+        default:
           return new Date(b.dataset.entryDate || '').getTime() - new Date(a.dataset.entryDate || '').getTime();
       }
     });
     sorted.forEach((card) => grid.appendChild(card));
 
-    // Update count and empty state
     countEl.textContent = `${visible.length} book${visible.length !== 1 ? 's' : ''}`;
     emptyEl.hidden = visible.length > 0;
+    renderActiveFilters(state);
   }
 
-  // Tag bar clicks (both the bar buttons and the in-card tag buttons)
-  document.addEventListener('click', (e) => {
-    const btn = (e.target as HTMLElement).closest<HTMLElement>('[data-tag]');
-    if (!btn) return;
+  // --- Helpers to set a single facet value ---
+  function setType(value: string) {
+    const radio = typeRadios().find((r) => r.value === value) || typeRadios().find((r) => r.value === '');
+    if (radio) radio.checked = true;
+  }
+  function setChecked(boxes: HTMLInputElement[], value: string, checked: boolean) {
+    const box = boxes.find((b) => b.value === value);
+    if (box) box.checked = checked;
+  }
 
-    const tag = btn.dataset.tag ?? '';
-
-    // If clicking the same active tag (or "All Books"), clear filter
-    if (tag === activeTag || tag === '') {
-      activeTag = '';
-    } else {
-      activeTag = tag;
-    }
-
-    // Sync tag bar button states
-    document.querySelectorAll<HTMLElement>('.book-tag').forEach((b) => {
-      b.classList.toggle('active', b.dataset.tag === activeTag || (activeTag === '' && b.dataset.tag === ''));
-    });
-
+  function clearAll() {
+    setType('');
+    identityBoxes().forEach((b) => (b.checked = false));
+    tagBoxes().forEach((b) => (b.checked = false));
+    searchEl.value = '';
     applyFilterAndSort();
+  }
 
-    // Scroll to grid
-    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  // --- Wiring ---
+  sidebar.addEventListener('change', (e) => {
+    const t = e.target as HTMLElement;
+    if (t.matches('input[name="f-type"], input.f-identity, input.f-tag')) applyFilterAndSort();
   });
 
   sortEl.addEventListener('change', applyFilterAndSort);
+  searchEl.addEventListener('input', applyFilterAndSort);
+  clearBtn.addEventListener('click', clearAll);
 
-  searchEl.addEventListener('input', () => {
-    searchQuery = searchEl.value.trim();
+  // Mobile: show/hide the filter sidebar
+  filtersToggle.addEventListener('click', () => {
+    const open = sidebar.classList.toggle('open');
+    filtersToggle.setAttribute('aria-expanded', String(open));
+  });
+
+  // Remove a chip
+  activeFiltersEl.addEventListener('click', (e) => {
+    const chip = (e.target as HTMLElement).closest<HTMLElement>('.filter-chip');
+    if (!chip) return;
+    const { group, value } = chip.dataset;
+    if (group === 'type') setType('');
+    else if (group === 'identity') setChecked(identityBoxes(), value || '', false);
+    else if (group === 'tag') setChecked(tagBoxes(), value || '', false);
     applyFilterAndSort();
   });
 
-  // Apply tag filter from URL param (e.g. coming from a book detail page)
-  const urlTag = new URLSearchParams(window.location.search).get('tag');
-  if (urlTag) {
-    activeTag = urlTag;
-    document.querySelectorAll<HTMLElement>('.book-tag').forEach((b) => {
-      b.classList.toggle('active', b.dataset.tag === activeTag || (activeTag === '' && b.dataset.tag === ''));
-    });
-  }
+  // Clicking a badge on a card applies that facet
+  grid.addEventListener('click', (e) => {
+    const badge = (e.target as HTMLElement).closest<HTMLElement>('.book-card-badge');
+    if (!badge) return;
+    e.preventDefault();
+    const { filter, value } = badge.dataset;
+    if (filter === 'type') setType(value || '');
+    else if (filter === 'identity') setChecked(identityBoxes(), value || '', true);
+    else if (filter === 'tag') setChecked(tagBoxes(), value || '', true);
+    applyFilterAndSort();
+    grid.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // --- Apply filters from URL params (e.g. coming from a book detail page) ---
+  const params = new URLSearchParams(window.location.search);
+  const typeParam = params.get('type');
+  if (typeParam) setType(typeParam);
+  params.getAll('identity').flatMap((v) => v.split(',')).forEach((v) => setChecked(identityBoxes(), v.trim(), true));
+  params.getAll('tag').flatMap((v) => v.split(',')).forEach((v) => setChecked(tagBoxes(), v.trim(), true));
 
   applyFilterAndSort();
 </script>

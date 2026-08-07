@@ -5,7 +5,9 @@ publishYear: 2018
 entryDate: 2026-03-29
 cover: "./images/fierce-intimacy.JPG"
 coverAlt: "Fierce Intimacy book cover"
-tags: ["Nonfiction", "Relationships", "Self Help", "Couples and Families", "Relational Repair"]
+type: "Non-Fiction"
+authorIdentity: []
+tags: ["Relationships", "Self Help", "Couples and Families", "Relational Repair"]
 ---
 
 No joke, this is SO GOOD. We need more accountability and responsibility in relationships, and also that we don't have control over others. It's basically the Let Them theory but presented by your Jewish workaholic uncle. I found it helpful in my hetero- relationship with a man, and feel like men would also resonate given the commitment for both parties in the relationship to own their stuff. If you can't afford couples therapy, or don't know where to start THIS BOOK will be mind blowingly good.

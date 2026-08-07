@@ -9,6 +9,12 @@ const bookReviews = defineCollection({
     entryDate: z.date(),
     cover: image().optional(),
     coverAlt: z.string().optional(),
+    type: z.enum(['Fiction', 'Non-Fiction']),
+    authorIdentity: z
+      .array(
+        z.enum(['Non-American', 'Black Author', 'Woman Author', 'Queer', 'AAPI', 'Indigenous'])
+      )
+      .default([]),
     tags: z.array(z.string()).default([]),
     draft: z.boolean().default(false),
   }),
@@ -45,6 +51,7 @@ const events = defineCollection({
       .optional(),
     showSlidingScale: z.boolean().default(false),
     draft: z.boolean().default(false),
+    past: z.boolean().default(false),
   }),
 });
 

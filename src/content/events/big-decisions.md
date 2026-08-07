@@ -15,6 +15,7 @@ registrationType: contact
 contactNote: Please email natalie@heartofheartscounseling.com to register
 showSlidingScale: false
 draft: false
+past: true
 ---
 
 Are you facing a decision that feels hard to untangle? If you've been feeling uncertain, overwhelmed, or pulled in different directions, this group is a supportive space to slow down, reflect on your values, and reassess what matters most to you. Through conversation and community, we'll explore personal values, competing priorities, and help you bridge the gap between where you are, and where you want to be.

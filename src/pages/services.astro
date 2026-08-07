@@ -5,9 +5,11 @@ import Footer from '../components/Footer.astro';
 import { getCollection } from 'astro:content';
 
 let upcomingEvents: Array<any> = [];
+let pastEvents: Array<any> = [];
 try {
   const allEvents = await getCollection('events');
-  upcomingEvents = allEvents.filter((e) => !e.data.draft);
+  upcomingEvents = allEvents.filter((e) => !e.data.draft && !e.data.past);
+  pastEvents = allEvents.filter((e) => !e.data.draft && e.data.past);
 } catch {
   // Collection not yet set up — Phase 1/2 fallback to hardcoded items
 }
@@ -208,11 +210,15 @@ try {
       </div>
       <div class="expect-card">
         <h3>Insurance</h3>
-        <p class="changes-coming">Changes are coming</p>
         <p>
           Using Insurance? Big Talk is getting credentialed with new plans every month. Please
           inquire!
         </p>
+        <h4>Insurances Covered:</h4>
+        <ul class="insurance-list">
+          <li>Aetna</li>
+          <li>Blue Cross</li>
+        </ul>
         <h4>Out-Of-Network:</h4>
         <p>
           I can provide "Superbills" on a monthly or quarterly basis for clients who pay out of
@@ -356,6 +362,11 @@ try {
     <div class="past-offerings-grid">
       <h2>Past Group Offerings</h2>
       <div class="past-flyers">
+        {pastEvents.map((event) =>
+          event.data.image && (
+            <img src={event.data.image} alt={event.data.imageAlt || event.data.title} />
+          )
+        )}
         <img
           src="/images/bodyImageFlyer.webp"
           alt="Flyer for Body Image Process Group for young women in 7th and 8th grade, focusing on body acceptance and positive self-talk, facilitated by Lexi Walker"

@@ -7,7 +7,7 @@ import { getCollection } from 'astro:content';
 let events: Array<any> = [];
 try {
   const allEvents = await getCollection('events');
-  events = allEvents.filter((e) => !e.data.draft);
+  events = allEvents.filter((e) => !e.data.draft && !e.data.past);
 } catch {
   // Collection not yet set up — fallback to hardcoded items
 }

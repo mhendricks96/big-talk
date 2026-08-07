@@ -5,7 +5,9 @@ publishYear: 2018
 entryDate: 2026-03-29
 cover: "./images/educated.JPG"
 coverAlt: "Educated book cover"
-tags: ["Nonfiction", "Religious Trauma", "Parent Trauma", "Memoir", "Sibling Abuse"]
+type: "Non-Fiction"
+authorIdentity: []
+tags: ["Religious Trauma", "Parent Trauma", "Memoir", "Sibling Abuse"]
 ---
 
 This author has such an incredible way of taking her stories and making them something almost anyone could relate to. To be raised by a severely mentally ill parent, intersecting with religious psychosis and trauma, and sibling abuse, it's just so intense.

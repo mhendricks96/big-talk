@@ -5,7 +5,9 @@ publishYear: 2026
 entryDate: 2026-03-29
 cover: "./images/to-catch-a-fascist.JPG"
 coverAlt: "To Catch a Fascist book cover"
-tags: ["Nonfiction", "PNW History", "Social Justice", "White Supremacy", "Politics"]
+type: "Non-Fiction"
+authorIdentity: []
+tags: ["PNW History", "Social Justice", "White Supremacy", "Politics"]
 ---
 
 If you live in the PNW, and want to read a history book of why 'antifa' became a buzzword, look no further this book ROCKS!! Who doesn't want to read the POV of someone infiltrating a nazi group in your hometown?

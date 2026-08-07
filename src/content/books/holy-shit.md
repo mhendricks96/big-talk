@@ -5,7 +5,9 @@ publishYear: 2016
 entryDate: 2026-03-29
 cover: "./images/holy-shit.JPG"
 coverAlt: "Holy Shit book cover"
-tags: ["Nonfiction", "Language", "History", "Religion"]
+type: "Non-Fiction"
+authorIdentity: []
+tags: ["Language", "History", "Religion"]
 ---
 
 I didn't realize 50% would be about the holy and 50% about the shit but alas! The title is very accurate. History, philosophy, linguistics and the entomology of 'swearing', whether that's as a holy form or a crude / deviant form.

@@ -5,7 +5,9 @@ publishYear: 2026
 entryDate: 2026-03-29
 cover: "./images/undimmed.JPG"
 coverAlt: "Undimmed book cover"
-tags: ["Nonfiction", "Memoir", "Sobriety", "Self Help", "Emotional Avoidance"]
+type: "Non-Fiction"
+authorIdentity: []
+tags: ["Memoir", "Sobriety", "Self Help", "Emotional Avoidance"]
 ---
 
 A lovely memoir style proposal of how to get connected to our wise self. The author used their experience with alcohol to propose reflection points for self awareness. 'Dimmers' we use to manage the big emotions we never learned the skills to cope with, things like alcohol, being busy, makeup, reading, anything that we pick up in an effort to avoid the feelings and truth of the world around us.
