@@ -14,6 +14,7 @@ showInNav: true
 registrationType: stripe
 showSlidingScale: true
 draft: false
+past: true
 stripeOptions:
   - label: $0 Small talk
     value: "0"

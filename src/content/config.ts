@@ -51,6 +51,7 @@ const events = defineCollection({
       .optional(),
     showSlidingScale: z.boolean().default(false),
     draft: z.boolean().default(false),
+    past: z.boolean().default(false),
   }),
 });
 

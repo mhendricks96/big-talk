@@ -1541,10 +1541,22 @@ footer p {
   margin-bottom: 1rem;
 }
 
-.expect-card .changes-coming {
-  font-style: italic;
-  font-weight: 500;
+.insurance-list {
+  list-style: none;
   margin-bottom: 1rem;
+  padding-left: 1.5rem;
+}
+
+.insurance-list li {
+  font-size: 1.35rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+.insurance-list li::before {
+  content: "•";
+  margin-right: 0.5rem;
+  color: var(--color-text);
 }
 
 .fees-list {
